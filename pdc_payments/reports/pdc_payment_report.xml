@@ -1,0 +1,19 @@
+<odoo>
+
+<!--    <report id="pdc_payment_report"-->
+<!--            model="pdc.payment"-->
+<!--            string="Partner Ledger Report"-->
+<!--            report_type="qweb-pdf"-->
+<!--            name="pdc_payments.pdc_payment_template"-->
+<!--            file="pdc_payments.pdc_payment_template"-->
+<!--    />-->
+
+    <report id="pdc_payment_report_id"
+            model="pdc.payment"
+            report_type="qweb-pdf"
+            string="Partner Ledger Report"
+            name="pdc_payments.pdc_payment_template"
+            file="pdc_payments.pdc_payment_template"
+    />
+
+</odoo>

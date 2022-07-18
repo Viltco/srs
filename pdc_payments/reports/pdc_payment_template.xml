@@ -1,0 +1,174 @@
+<odoo>
+
+    <template id="pdc_payment_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="text-left">
+                        <h3 class="text-center">Partner Ledger</h3>
+                        <t t-foreach="record.partner_id" t-as="prd">
+                            <strong>Name:</strong>
+                            <span t-field="prd.name"/>
+                            <br/>
+                            <strong>Address:</strong>
+                            <span t-field="prd.street"/>
+                        </t>
+                        <p>
+                            <strong>Date:</strong>
+<!--                            <span t-esc="data['start_date']" t-options="{'widget': 'date'}"/>-->
+                            <strong>-</strong>
+<!--                            <span t-esc="data['end_date']" t-options="{'widget': 'date'}"/>-->
+                        </p>
+                    </div>
+                </div>
+                <table class="table table-sm">
+                    <tr style="border-bottom:1px solid black;">
+                        <td style="border-bottom:1px solid black;">
+                            <strong>Date</strong>
+                        </td>
+                        <td style="border-bottom:1px solid black;">
+                            <strong>Company</strong>
+                        </td>
+                        <td style="border-bottom:1px solid black;">
+                            <strong>Debit</strong>
+                        </td>
+                        <td style="border-bottom:1px solid black;">
+                            <strong>Credit</strong>
+                        </td>
+                        <td style="border-bottom:1px solid black;">
+                            <strong>Balance</strong>
+                        </td>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <t t-set="check_balance" t-value="bal(record.partner_id,data['form']['date_start'],data['form']['date_end'])"/>
+                            <td style="border-bottom:1px solid black;">
+<!--                                <span t-esc="record.date_payment" t-options="{'widget': 'date'}"/>-->
+                            </td>
+                            <td style="border-bottom:1px solid black;">
+<!--                                <span t-esc="request.env.company_id.name"/>-->
+                            </td>
+                            <td style="border-bottom:1px solid black;">
+                                <span t-esc="check_balance['debit']"/>
+                            </td>
+                            <td style="border-bottom:1px solid black;">
+                                <span t-esc="check_balance['credit']"/>
+                            </td>
+                            <td style="border-bottom:1px solid black;">
+                                <span t-esc="check_balance['balance']"/>
+                            </td>
+                        </tr>
+                    </tbody>
+
+<!--                    <tbody>-->
+<!--                        <t t-set="rb" t-value="0"/>-->
+<!--                        <tr t-foreach="openbal" t-as="o">-->
+<!--                            <strong>-->
+<!--                                <td style="border-bottom:1px solid black;" colspan="5" class="text-left">-->
+<!--                                    <strong>Opening Balance</strong>-->
+<!--                                </td>-->
+<!--                            </strong>-->
+<!--                            <td style="border-bottom:1px solid black;" class="text-right">-->
+<!--                                <strong>-->
+<!--                                    <span t-esc="o['opening_bal']"/>-->
+<!--                                </strong>-->
+<!--                            </td>-->
+
+<!--                            <t t-if="o['opening_bal']">-->
+<!--                                <t t-set="rb" t-value="rb + o['opening_bal']"/>-->
+<!--                            </t>-->
+<!--                        </tr>-->
+<!--                        <tr t-foreach="dat" t-as="d" style="font-size: 13px;">-->
+<!--                            <t t-set="rb" t-value="rb + d['debit'] - d['credit'] "/>-->
+<!--                            <td style="border-bottom:1px solid black;" class="text-left">-->
+<!--                                <span t-esc="d['date']" t-options="{'widget': 'date'}"/>-->
+<!--                            </td>-->
+<!--                            <td style="border-bottom:1px solid black;" class="text-left">-->
+<!--                                <span t-esc="d['doc_no']"/>-->
+<!--                            </td>-->
+<!--                            <td style="border-bottom:1px solid black;" class="text-left">-->
+<!--                                <span t-esc="d['gl_account']"/>-->
+<!--                            </td>-->
+<!--                            &lt;!&ndash;<td class="text-left"><span t-esc="d['line_desc']"/></td>&ndash;&gt;-->
+<!--                            <td style="border-bottom:1px solid black;" class="text-right">-->
+<!--                                <t t-esc="'{0:,.0f}'.format(int(d['debit']))"/>-->
+<!--                            </td>-->
+<!--                            <td style="border-bottom:1px solid black;" class="text-right">-->
+<!--                                <t t-esc="'{0:,.0f}'.format(int(d['credit']))"/>-->
+<!--                            </td>-->
+<!--                            <td style="border-bottom:1px solid black;" class="text-right">-->
+<!--                                <t t-esc="'{0:,.0f}'.format(int(rb))"/>-->
+<!--                            </td>-->
+
+<!--                        </tr>-->
+<!--                        <tr style="border-top:1px solid #000;">-->
+<!--                            <td style="border-bottom:1px solid black;" colspan="5" class="text-left">-->
+<!--                                <strong>Closing Balance</strong>-->
+<!--                            </td>-->
+<!--                            <td style="border-bottom:1px solid black;" class="text-right">-->
+<!--                                <strong>-->
+<!--                                    <t t-esc="'{0:,.0f}'.format(int(rb))"/>-->
+<!--                                </strong>-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                    </tbody>-->
+                </table>
+
+                <table class="table table-sm" style="border-bottom:1px solid black;">
+                    <thead>
+                        <tr>
+                            <th style="border-bottom:1px solid black;">
+                                Date
+                            </th>
+                            <th style="border-bottom:1px solid black;">
+                                Name
+                            </th>
+                            <th style="border-bottom:1px solid black;">
+                                Bank
+                            </th>
+                            <th style="border-bottom:1px solid black;">
+                                Status
+                            </th>
+                            <th style="border-bottom:1px solid black;">
+                                Amount
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border-bottom:1px solid black;">
+                                <span t-esc="record.date_payment" t-options="{'widget': 'date'}"/>
+                            </td>
+                            <td style="border-bottom:1px solid black;">
+                                <span t-esc="record.name"/>
+                            </td>
+                            <td style="border-bottom:1px solid black;">
+                                <span t-esc="record.bank_id.acc_number"/>
+                            </td>
+                            <td style="border-bottom:1px solid black;">
+                                <span t-esc="record.state"/>
+                            </td>
+                            <td style="border-bottom:1px solid black;">
+                                <span t-esc="record.payment_amount"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="text-right">
+                    <td colspan="2">&#160;</td>
+                    <td colspan="2" class="text-right">
+                        <strong>Net Balance:</strong>
+                    </td>
+                    <td colspan="3" class="text-right">
+                        <strong>
+                            <t t-esc="check_balance['balance'] - record.payment_amount"/>
+                        </strong>
+                    </td>
+                </div>
+
+            </t>
+        </t>
+    </template>
+
+</odoo>
