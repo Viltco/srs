@@ -1,0 +1,61 @@
+<odoo>
+  <data>
+  
+  
+        <record id="account_commission_inh" model="ir.ui.view">
+            <field name="name">account.commission_inh</field>
+            <field name="model">account.move</field>
+
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_reference']" position="after">
+                    <field name="commission_id" attrs ="{'invisible': [('move_type', 'not in', ('in_invoice', 'in_refund'))]}"/>
+                   
+                </xpath>
+            </field>
+        </record>
+  
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="property_invoice_bill.action_window">
+      <field name="name">property_invoice_bill window</field>
+      <field name="res_model">property_invoice_bill.property_invoice_bill</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="property_invoice_bill.action_server">
+      <field name="name">property_invoice_bill server</field>
+      <field name="model_id" ref="model_property_invoice_bill_property_invoice_bill"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="property_invoice_bill" id="property_invoice_bill.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="property_invoice_bill.menu_1" parent="property_invoice_bill.menu_root"/>
+    <menuitem name="Menu 2" id="property_invoice_bill.menu_2" parent="property_invoice_bill.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="property_invoice_bill.menu_1_list" parent="property_invoice_bill.menu_1"
+              action="property_invoice_bill.action_window"/>
+    <menuitem name="Server to list" id="property_invoice_bill" parent="property_invoice_bill.menu_2"
+              action="property_invoice_bill.action_server"/>
+-->
+  </data>
+</odoo>

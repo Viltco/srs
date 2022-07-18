@@ -1,0 +1,35 @@
+<odoo>
+  <data>
+  
+  
+  
+        <record id="property_book_inh" model="ir.ui.view">
+            <field name="name">property.book.inh.custom</field>
+            <field name="model">property.book</field>
+
+            <field name="inherit_id" ref="property_rental_mgt_app.property_book_wizard"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='renewal_date']" position="before">
+                    <field name="payment_terms"/>
+                </xpath>
+            </field>
+        </record>
+  
+        <record id="property_product_inh" model="ir.ui.view">
+            <field name="name">property.product.inh.custom</field>
+            <field name="model">product.product</field>
+
+            <field name="inherit_id" ref="property_rental_mgt_app.product_normal_form_view_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='construction_status']" position="after">
+                    <field name="tenant_id"/>
+                    <field name="commission_type"/>
+                    <field name="commission_amount"/>
+                </xpath>
+            </field>
+        </record>
+  
+  
+  
+  </data>
+</odoo>  
