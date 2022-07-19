@@ -1,0 +1,109 @@
+<odoo>
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="account_payment_email_template" model="mail.template">
+            <field name="name">Account Payment Email Template</field>
+            <field name="model_id" ref="account.model_account_payment" />
+            <!-- <field name="report_template" ref="voucher_report.voucher_report_pdf_id"/> -->
+            <field name="email_from">${(object.company_id.email |safe}</field>
+            <field name="email_to">${object.partner_id.email}</field>
+            <field name="subject">Ref ${object.name or 'n/a' }</field>
+            <field name="auto_delete" eval="True" />
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html">
+                <![CDATA[
+
+                %for partner in object.partner_id:
+                    <span style="font-weight:bold">${partner.name}</span>
+                    <br/>
+                    <span style="font-weight:bold">${partner.street}</span>
+                    % if partner.street2:
+                        <br/>
+                        <span style="font-weight:bold">${partner.street2}</span>
+                    % endif
+                    % if partner.city:
+                        <br/>
+                        <span style="font-weight:bold">${partner.city}</span>
+                    % endif
+                    % if partner.country_id:
+                        <span style="font-weight:bold">${partner.country_id.name}</span>
+                    % endif
+                    % if partner.zip:
+                        <span style="font-weight:bold">${partner.zip}</span>
+                    % endif
+                    
+                %endfor
+                <br/>
+                <p>
+                <span>This email is to notify you that payment for the following invoice(s) was processed.</span>
+                </p>
+                <br/>
+                <table width="100%" style="border: 1px solid black;border-collapse: collapse;">
+                <tr>
+                    %if object.partner_type=='customer':
+                        <th style="border: 1px solid black;border-collapse: collapse;background-color: lightgray; margin-left:7px">
+                        <span style="margin-left:7px">Invoice No#</span>
+                        </th>
+                    %endif
+                    %if object.partner_type=='supplier':
+                        <th style="border: 1px solid black;border-collapse: collapse;background-color: lightgray; margin-left:7px">
+                        <span style="margin-left:7px">Bill No#</span>
+                        </th>
+                    %endif
+
+                    <th style="border: 1px solid black;border-collapse: collapse;background-color: lightgray; margin-left:7px">
+                        <span style="margin-left:7px">PO#</span>
+                    </th>
+                    <th style="border: 1px solid black;border-collapse: collapse;background-color: lightgray; ">
+                        <span style="margin-left:7px"> Amount</span>
+                    </th>
+                            
+                </tr>
+                
+              %for line in object.invoice_tree:
+              %if line.reconcile==True:
+                    <tr>
+                          <td style="border: 1px solid black;border-collapse: collapse;padding: 10px">
+                            <span> ${line.invoice_id.ref}</span>
+                          </td>
+                      <td style="border: 1px solid black;border-collapse: collapse;padding: 10px;">
+                            <span>${ line.invoice_id.invoice_origin}</span>
+                      </td>
+                      <td style="border: 1px solid black;border-collapse: collapse;padding: 10px;">
+                         <span> ${"%.2f" %  line.invoice_amount}</span>
+                          
+                      </td>
+                    </tr>
+                %endif
+               %endfor 
+              <tr>
+                    <td style="border: 1px solid black;border-collapse: collapse;padding: 10px;">
+                        <span style="float:right;font-weight:bold">Total</span>
+                    </td>
+                    <td style="border: 1px solid black;border-collapse: collapse;padding: 10px;">
+                        <span></span>
+                    </td>
+
+                    <td style="border: 1px solid black;border-collapse: collapse;padding: 10px;font-weight:bold">
+                        <span>${"%.2f" % object.get_total()} </span>
+                    </td>
+                </tr>
+              
+            
+            </table>
+
+                <br/>
+                <br/>
+                        <p>
+                        <span>Should you have any questions, please contact accounts@euroitsolution.co.uk</span>
+                        </p>
+                        <br/>
+                        <p>
+                        <span>Disclaimer: This email and any files transmitted with it are confidential and intended solely for the use of the individual or entity to whom they are addressed. If you are not the named addressee you should not disseminate, distribute, or copy this e-mail. Please notify the sender immediately by e-mail if you have received this e-mail by mistake and delete this e-mail from your system.</span>
+                        </p>
+                 ]]>
+            </field>
+        </record>
+    </data>
+</odoo>
+<!-- {%for i in object.invoice_tree%}  -->

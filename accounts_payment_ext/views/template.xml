@@ -1,0 +1,220 @@
+<?xml version="1.0"?> 
+<odoo> 
+
+  <record id="account.view_account_payment_invoice_form" model="ir.ui.view">
+      <field name="name">account.payment.invoice.form</field>
+      <field name="model">account.payment</field>
+      <field name="inherit_id" ref="account.view_account_payment_form"/>
+      <field name="mode">primary</field>
+      <field name="arch" type="xml">
+          <xpath expr="//header" position='replace'>
+            <header>
+              <button name="get_invoices_reg_pay" type="object" string="Get Invoices" class="oe_highlight" attrs="{'invisible': [('payment_type', '=', 'transfer')]}"/>
+            </header>
+          </xpath>
+          <xpath expr="//div[@name='button_box']" position='replace'></xpath>
+          <xpath expr="//sheet" position='after'>
+              <footer>
+                  <field name="state" invisible="1"/>
+                  <button string='Validate' name="post" type="object" class="btn-primary"/>
+                  <button string="Cancel" class="btn-secondary" special="cancel"/>
+              </footer>
+          </xpath>
+      </field>
+  </record>
+  <record id="view_acc_pay_form_ext" model="ir.ui.view"> 
+    <field name="name">view_acc_pay_form_ext</field> 
+    <field name="model">account.payment</field>
+    <field name="inherit_id" ref="account.view_account_payment_form"/>
+    <field name="type">form</field> 
+    <field name="arch" type="xml">
+
+        <xpath expr="//group[@name='payment_difference']" position="replace">
+          <group name="payment_difference" groups="account.group_account_user">
+            <label for="payment_difference"/>
+            <div>
+                <field name="payment_difference"/>
+                <field name="payment_difference_handling" widget="radio" nolabel="1"/>
+                <div attrs="{'invisible': [('payment_difference_handling','=','open')]}">
+                    <label for="writeoff_account_id" class="oe_edit_only" string="Post Difference In"/>
+                    <field name="writeoff_account_id" options="{'no_create': True}" string="Post Difference In" attrs="{'required': [('payment_difference_handling', '=', 'reconcile'), ('payment_difference', '!=', 0.0)]}"/>
+                    <label for="writeoff_label" class="oe_edit_only" string="Label"/>
+                    <field name="writeoff_label" attrs="{'required': [('payment_difference_handling', '=', 'reconcile'), ('payment_difference', '!=', 0.0)]}"/>
+                </div>
+            </div>
+          </group>
+        </xpath>
+        <xpath expr="//field[@name='communication']" position="after">
+            <!-- <field name="ref" attrs="{'readonly':[('state','!=','draft')]}"/> -->
+            <field name="currency_id" options="{'no_create':True,'no_edit':True}" attrs="{'readonly':[('state','!=','draft')]}"/>
+            <field name="bank_acc_id" options="{'no_create':True,'no_edit':True}" attrs="{'readonly':[('state','!=','draft')]}"/>
+            <field name="journal_entry_id" readonly="1"/>
+            <field name="not_register_payment" invisible="1"/>
+
+        </xpath>
+
+
+        <xpath expr="//button[@name='post']" position="after">
+
+          <button name="unlink_payment" type="object" string="Unlink Payment" class="oe_highlight" groups="accounts_payment_ext.group_delete_rec_ids"/>
+          <button name="send_by_mail" type="object" string="Send Mail" class="oe_highlight"/>
+          <button name="get_invoices" type="object" string="Get Invoices" class="oe_highlight" attrs="{'invisible': [('payment_type', '=', 'transfer')]}"/>
+
+          <!-- groups="base.group_user" -->
+
+        </xpath>
+        
+        <xpath expr="//group[1]" position="after">
+            <!-- <notebook attrs="{'invisible':[('payment_type','=','transfer')]}"> -->
+            <notebook attrs="{'invisible':['|',('not_register_payment','=',False),('payment_type','=','transfer')]}">
+                <page name="invoice_tree" string="Invoices">
+                    <field name="invoice_tree" attrs="{'readonly':[('state','!=','draft')]}">
+                        <tree editable="bottom">
+                            <field name="reconcile" invisible="0"/>
+                            <field name="invoice_id" required="1" domain="[('partner_id','=',partner_id)]" options="{'no_create':True,'no_edit':True}" readonly="1"/>
+                            <field name="invoice_amount" readonly="1" sum="Total"/>
+                            <field name="invoice_residual_amount" readonly="1" sum="Total"/>
+                            <field name="reconciled_amount" sum="Total"/>
+                            <field name="bank_charges" sum="Total"/>
+                            <field name="partner_id" invisible="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+
+        </xpath>
+
+    </field> 
+
+  </record>
+
+
+  <!-- <record id="view_acc_pay_form_ext_ref" model="ir.ui.view"> 
+    <field name="name">view_acc_pay_form_ext_ref</field> 
+    <field name="model">account.payment</field>
+    <field name="inherit_id" ref="account.view_account_payment_view_move_form"/>
+    <field name="type">form</field> 
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='communication']" position="after">
+          <field name="ref" attrs="{'readonly':[('state','!=','draft')]}"/>
+
+        </xpath>
+        
+    </field> 
+
+  </record> -->
+
+
+  <record id="account_form_view"   model="ir.ui.view"> 
+
+      <field name="name">account_form_view</field> 
+      <field name="model">account.move</field> 
+      <field name="inherit_id" ref="account.view_move_form"/> 
+      <field name="arch" type="xml">
+
+
+        <xpath expr="//page[@name='other_info']" position="before">
+          <page string="Payments" name="payments">
+              <field name="payments" nolabel="1" readonly = "1">
+                  <tree string="Payments" >
+                      <field name="date"/>
+                      <field name="amount"/>
+                      <field name="invoice_id"/>
+                      <field name="payment_id"/>
+                      
+                  </tree>
+              </field>
+          </page>
+        </xpath>
+
+        <!-- <xpath expr="//button[@name='action_invoice_draft']" position="after"> -->
+        <xpath expr="//header" position="inside">
+
+          <!-- <button name="unlink_invoice" type="object" string="Unlink Invoice" class="oe_highlight" groups="accounts_payment_ext.group_delete_rec_ids"/> -->
+
+          <!-- groups="base.group_user" -->
+
+        </xpath>
+
+    
+      </field>
+
+  </record>
+
+
+  <!-- passing not register payment as context -->
+  <record id="account.action_account_payments" model="ir.actions.act_window">
+      <field name="name">Payments</field>
+      <field name="res_model">account.payment</field>
+      <field name="view_mode">tree,kanban,form,graph</field>
+      <field name="context">{
+          'default_payment_type': 'inbound',
+          'default_partner_type': 'customer',
+          'default_not_register_payment': True,
+          'search_default_inbound_filter': 1,
+          'res_partner_search_mode': 'customer',
+      }</field>
+      <field name="view_id" ref="account.view_account_payment_tree"/>
+      <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Register a payment
+          </p><p>
+            Payments are used to register liquidity movements. You can process those payments by your own means or by using installed facilities.
+          </p>
+      </field>
+  </record>
+
+  <record id="account.action_account_payments_payable" model="ir.actions.act_window">
+      <field name="name">Payments</field>
+      <field name="res_model">account.payment</field>
+      <field name="view_mode">tree,kanban,form,graph</field>
+      <field name="context">{
+          'default_payment_type': 'outbound',
+          'default_partner_type': 'supplier',
+          'default_not_register_payment': True,
+          'search_default_outbound_filter': 1,
+          'res_partner_search_mode': 'supplier',
+      }</field>
+      <field name="view_id" ref="account.view_account_supplier_payment_tree"/>
+      <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Register a payment
+          </p><p>
+            Payments are used to register liquidity movements. You can process those payments by your own means or by using installed facilities.
+          </p>
+      </field>
+  </record>
+
+<!--   <record id="vendor_bill_form_view" model="ir.ui.view">
+        <field name="name">vendor_bill_form_view</field>
+        <field name="model">account.move</field> 
+        <field name="inherit_id" ref="account.invoice_supplier_form"/> 
+        <field name="arch" type="xml">
+  
+            <xpath expr="//page[2]" position="before">
+                <page string="Payments" name="payments">
+                    <field name="payments" nolabel="1" readonly = "1">
+                        <tree string="Payments" >
+                            <field name="date"/>
+                            <field name="amount"/>
+                            <field name="invoice_id"/>
+                            <field name="payment_id"/>
+                            
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+
+            <xpath expr="//button[@name='action_invoice_draft']" position="after">
+
+              <button name="unlink_invoice" type="object" string="Unlink Bill" class="oe_highlight" groups="accounts_payment_ext.group_delete_rec_ids"/>
+
+
+            </xpath>
+   
+        </field> 
+
+  </record> -->
+
+</odoo> 

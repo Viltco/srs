@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    	<record model="ir.module.category" id="module_delete_inv_bill_pay">
+            <field name="name">Delete Records</field>
+            <field name="description">Delete Records</field>
+            <field name="sequence">20</field>
+        </record>
+
+       	<record model="res.groups" id="group_delete_rec_ids">
+            <field name="name">Delete Invoice Bills Payments</field>
+            <field name="category_id" ref="accounts_payment_ext.module_delete_inv_bill_pay"/>
+        </record>
+    </data>
+</odoo>
