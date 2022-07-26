@@ -1,0 +1,83 @@
+<odoo>
+
+    <record id="view_property_maintanance_form_inherit" model="ir.ui.view">
+        <field name="name">property.maintanance.form.inherit</field>
+        <field name="model">property.maintanance</field>
+        <field name="inherit_id" ref="property_rental_mgt_app.property_maintanance_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//header/button[@name='create_maintanance_invoice']" position="after">
+                <button name="button_active"
+                        type="object"
+                        states="new"
+                        string="Active"
+                        class="oe_highlight"
+                />
+                <button name="button_assigned"
+                        type="object"
+                        states="active"
+                        string="Assigned"
+                        class="oe_highlight"
+                />
+                <button name="button_in_progress"
+                        type="object"
+                        states="assigned"
+                        string="In Progress"
+                        class="oe_highlight"
+                />
+                <button name="button_hold"
+                        type="object"
+                        states="in_progress"
+                        string="Hold"
+                        class="oe_highlight"
+                />
+                <button name="button_to_approve"
+                        type="object"
+                        states="hold"
+                        string="Approve"
+                        class="oe_highlight"
+                />
+                <button name="button_rejected"
+                        type="object"
+                        states="to_approve"
+                        string="Reject"
+                        class="oe_highlight"
+                />
+                <button name="button_done"
+                        type="object"
+                        states="to_approve"
+                        string="Done"
+                        class="oe_highlight"
+                />
+
+                <field name="timer_start" widget="timer_timer" class="text-danger ml-auto h2 ml-4 font-weight-bold"/>
+                <field name="timer_pause" widget="timer_timer" invisible="1"/>
+
+                <button class="btn-primary" name="action_timer_start" type="object" string="Start" icon="fa-clock-o" attrs="{'invisible':[('is_hide_start', '=', True)]}"/>
+                <button class="btn-secondary" name="action_timer_start" type="object" string="Start" icon="fa-clock-o" invisible="1"/>
+                <button class="btn-primary btn-danger o_fsm_stop" name="action_timer_stop" type="object" string="Stop" icon="fa-clock-o" attrs="{'invisible':[('is_hide_stop', '=', True)]}"/>
+                <button class="btn-primary" name="action_timer_pause" type="object" string="Pause" attrs="{'invisible':[('is_hide_pause', '=', True)]}"/>
+                <button class="btn-primary btn-info" name="action_timer_resume" type="object" string="Resume" attrs="{'invisible':[('is_hide_resume', '=', True)]}"/>
+
+            </xpath>
+
+            <xpath expr="//field[@name='property_id']" position="after">
+                <field name="tenant_id"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="job_pos"/>
+            </xpath>
+
+            <xpath expr="//field[@name='invoice_id']" position="after">
+                <label string="Maintenance Time" for="mainte_time"/>
+                <strong><field name="mainte_time" widget="float_time" readonly="1"/></strong>
+                <field name="is_hide_start" invisible="1"/>
+                <field name="is_hide_pause" invisible="1"/>
+                <field name="is_hide_stop" invisible="1"/>
+                <field name="is_hide_resume" invisible="1"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
