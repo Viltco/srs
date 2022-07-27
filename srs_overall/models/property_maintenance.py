@@ -66,7 +66,7 @@ class PropertyMainInh(models.Model):
     res_id = fields.Integer(required=True)
     user_id = fields.Many2one('res.users')
 
-    mainte_time = fields.Float(string='Maintenance Time')
+    mainte_time = fields.Float(string='Duration')
 
     is_hide_start = fields.Boolean(string="Hide Start")
     is_hide_pause = fields.Boolean(string="Hide Pause", default=True)
