@@ -19,13 +19,17 @@
     'version': '14.0.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'property_rental_mgt_app', 'timer'],
+    'depends': ['base', 'property_rental_mgt_app', 'account_asset', 'account', 'purchase', 'mail'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
+        'views/account_asset_views.xml',
+        'views/account_move_views.xml',
         'views/property_views.xml',
         'views/assets.xml',
+        'views/offer_letter_views.xml',
+        'views/purchase_views.xml',
     ],
 
 }
