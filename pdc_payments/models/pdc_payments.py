@@ -39,12 +39,24 @@ class PDCPayment(models.Model):
 
     # State Field
 
+    # state = fields.Selection([('draft', 'Draft'),
+    #                           ('save', 'Save'),
+    #                           ('registered', 'Registered'),
+    #                           ('returned', 'Returned'),
+    #                           ('deposited', 'Deposited'),
+    #                           ('bounced', 'Bounced'),
+    #                           ('cleared', 'Cleared'),
+    #                           ('cancel', 'Cancel'),
+    #                           ], string='State', default='draft', tracking=True, readonly=True, index=True, copy=False)
+
     state = fields.Selection([('draft', 'Draft'),
                               ('save', 'Save'),
-                              ('registered', 'Registered'),
-                              ('returned', 'Returned'),
+                              # ('registered', 'Registered'),
+                              ('registered', 'Received'),
+                              # ('returned', 'Returned'),
                               ('deposited', 'Deposited'),
                               ('bounced', 'Bounced'),
+                              ('replaced', 'Replaced'),
                               ('cleared', 'Cleared'),
                               ('cancel', 'Cancel'),
                               ], string='State', default='draft', tracking=True, readonly=True, index=True, copy=False)
