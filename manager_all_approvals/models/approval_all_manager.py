@@ -5,8 +5,6 @@ from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_is_zero, float_compare
 
 
-
-
 class AccountEdi(models.Model):
     _inherit = 'account.edi.document'
 
@@ -68,10 +66,6 @@ class PurchaseOrderInherit(models.Model):
                 order.write({'state': 'to approve'})
             if order.partner_id not in order.message_partner_ids:
                 order.message_subscribe([order.partner_id.id])
-        for line in self.order_line:
-            line.move_ids.description = line.name
-            for rec_line in line.move_ids.move_line_ids:
-                rec_line.description = line.name
         return True
 
     def button_reject(self):
@@ -118,10 +112,6 @@ class SaleOrderInh(models.Model):
         if self.env.user.has_group('manager_all_approvals.group_approve_sale_order'):
             self.approve_by_id = self.env.user.id
         rec = super(SaleOrderInh, self).action_confirm()
-        for line in self.order_line:
-            line.move_ids.description = line.name
-            for rec_line in line.move_ids.move_line_ids:
-                rec_line.description = line.name
         return rec
 
     def button_reject(self):
