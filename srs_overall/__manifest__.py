@@ -28,7 +28,6 @@
         'views/account_move_views.xml',
         'views/property_views.xml',
         'views/assets.xml',
-        'views/contact_views.xml',
         'views/offer_letter_views.xml',
         'views/purchase_views.xml',
     ],
