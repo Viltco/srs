@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_feature_amenities_tree" model="ir.ui.view">
+        <field name="name">feature.amenities.tree</field>
+        <field name="model">feature.amenities</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="feature_amenities"/>
+            </tree>
+
+        </field>
+    </record>
+    <record id="view_feature_amenities_form" model="ir.ui.view">
+        <field name="name">feature.amenities.form</field>
+        <field name="model">feature.amenities</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="feature_amenities" required="True"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="feature_amenities_action" model="ir.actions.act_window">
+        <field name="name">Feature Amenities</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">feature.amenities</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create your feature amenities!
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="feature_amenities_details"
+              name="Feature Amenities"
+              parent="configuraion_root"
+              action="feature_amenities_action"
+              sequence="4"/>
+
+</odoo>

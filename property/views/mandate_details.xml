@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mandate_details_tree" model="ir.ui.view">
+        <field name="name">mandate.details.tree</field>
+        <field name="model">mandate.details</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="mandate_details"/>
+            </tree>
+
+        </field>
+    </record>
+    <record id="view_mandate_details_form" model="ir.ui.view">
+        <field name="name">mandate.details.form</field>
+        <field name="model">mandate.details</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="mandate_details" required="True"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="mandate_details_action" model="ir.actions.act_window">
+        <field name="name">Mandate Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mandate.details</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create your Mandate Details!
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="mandate_details_details"
+              name="Property Permit"
+              parent="configuraion_root"
+              action="mandate_details_action"
+              sequence="2"/>
+
+</odoo>

@@ -39,9 +39,15 @@
         <menuitem
             id="menu_property_contract_details"
             name="Contracts Details"
-            parent="menu_property_root"
+            parent="menu_property_root"/>
+
+        <menuitem
+            id="menu_contract_details"
+            name="Contracts Details"
+            parent="menu_property_contract_details"
             action="action_contract_details"
-            groups="property_rental_mgt_app.group_manager,property_rental_mgt_app.group_rent_payer"/>
+            />
+<!--        groups="property_rental_mgt_app.group_manager,property_rental_mgt_app.group_rent_payer"-->
 
         <menuitem
             id="menu_property_maintenance"

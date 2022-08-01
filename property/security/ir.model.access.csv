@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_model_branch,access.model.branch,model_model_branch,,1,1,1,1
+access_commercial_property,access.commercial.property,model_commercial_property,,1,1,1,1
+access_residential_property,access.residential.property,model_residential_property,,1,1,1,1
+access_property_type,access.property.type,model_property_type,,1,1,1,1
+access_mandate_details,access.mandate.details,model_mandate_details,,1,1,1,1
+access_tenancy_contract,access.tenancy.contract,model_tenancy_contract,,1,1,1,1
+access_area_details,access.area.details,model_area_details,,1,1,1,1
+access_feature_amenities,access.feature.amenities,model_feature_amenities,,1,1,1,1

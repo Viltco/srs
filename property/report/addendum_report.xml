@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id="addendum_pdf_id_print">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="article o_report_layout_standard" t-att-data-oe-model="doc and doc._name"
+                     t-att-data-oe-id="doc and doc.id">
+                    <t t-call="property.custom_session_header_footer"/>
+                    <div class="page" style=" padding-top: 40px; font-size:14px">
+                        <span>This Addendum shall form part of the Tenancy Contract No; _____________________ and must
+                            be read in conjunction with the Contract between the “Landlord” __________________________
+                            (LL) “Tenant” ________________________________ (TT).
+                        </span>
+                        <br/>
+                        <br/>
+                        <span>The “Premises” shall mean the property including gardens, common communal entrances
+                            facilities. “Fixtures, Furnishings and Fittings” shall mean all that is now in or on the
+                            Premises.
+                        </span>
+                        <br/>
+                        <br/>
+                        <span>The TT and LL agree as follows:</span>
+                        <div style=" padding-top: 3px; width:100%;" class="row">
+                            <table>
+                                <tr class="table table-md">
+                                    <td width="40%" style="font-size:12px">
+                                        <strong>1 Security Deposit</strong>
+                                        <br/>
+                                        <!--                                         <p class="text-justify" style="padding-left:30px"> -->
+                                        <p class="text-justify">
+                                            1.1 The Tenant has paid AED _______/-
+                                            <br/>
+                                            (________________________) with 1 st year contract as a security Deposit.
+                                            This will be refunded to the Tenant when vacating, subject to the Premises
+                                            being left in a satisfactory condition as to when the apartment was handed
+                                            over to the Tenant and Tenant and receipts of all paid bills being given to
+                                            The Landlord.
+                                            <br/>
+                                            1.2 If any damages are formed or necessary repair paint or cleaning works
+                                            are required the LL reserves the right to deduct the cost of such expenses
+                                            from TT’s security deposit subject to normal wear and tear.
+                                            <br/>
+                                        </p>
+                                        <span>
+                                            <strong>2 Use of Premises</strong>
+                                        </span>
+                                        <br/>
+                                        <p>
+                                            2.1 It is understood that the TT will use the Premises for residential
+                                            purposes only and the TT shall not use the Premises to carry out any
+                                            profession, trade or business whatsoever.
+                                            <br/>
+                                            2.2 The TT is not allowed to assign, sublet or lease the property to any
+                                            third party.
+                                            <br/>
+                                            2.3 The TT shall not make any addition or alteration to the Premises without
+                                            the written consent of the LL.
+                                            <br/>
+                                            2.4 The erection of any board or notice visible from outside of the property
+                                            advertising any profession, trade, business, goods or service is prohibited.
+                                            <br/>
+                                            2.5 Rules of Association shall apply as set by the developer.
+                                            <br/>
+                                            2.6 The TT shall not do or permit any act that may cause injury, damage,
+                                            nuisance or annoyance to a neighbouring property or person and shall respect
+                                            any community by laws.
+                                            <br/>
+                                            2.7 The Premises shall not be used for any illegal or immoral purpose in
+                                            contravention of any emirate regulation or by law.
+                                            <br/>
+                                            2.8 The keeping of any pets on the Premises must be with prior consent of
+                                            the LL. As per the community rules “pets are not allowed” and if any such
+                                            violation is reported by the community management, the TT shall rectify this
+                                            immediately.
+                                            <br/>
+                                            2.9 It is understood that the municipality reserve the right to evict
+                                            non-sharing families.
+                                            <br/>
+                                            2.10 The TT shall not glue carpet or wooden grippers to the floor surfaces.
+                                            <br/>
+                                        </p>
+                                        <span>
+                                            <strong>3 Terms of Payment</strong>
+                                        </span>
+                                        <br/>
+                                        3.1 The Tenant shall pay the rent annually in advance in _ (_____) Cheques
+                                        Instalments.
+                                        <br/>
+                                        3.2 The TT understands that non-clearance of a cheque is unlawful, and they
+                                        shall be charged AED 500 for each bounced cheque.
+                                        <br/>
+                                        <span>
+                                            <strong>4 Interior Furnishing</strong>
+                                        </span>
+                                        <br/>
+                                        4.1 The TT shall not remove at any time during or after the tenancy any item of
+                                        fixtures, furnishings and fittings.
+                                        <br/>
+                                        4.2 Insuring the contents of the property is the responsibility of the TT.
+                                        <br/>
+                                        <span>
+                                            <strong>5 Reinstatement/ Reconstruction</strong>
+                                        </span>
+                                        <br/>
+                                        5.1 By the end of this Tenancy Contract, the TT will be responsible for
+                                        reinstatement or reconstruction of any areas/parts/furniture removed, damaged
+                                        (other than normal wear tear), or change inside of the Premises to the
+                                        Landlord’s Satisfaction.
+                                        <br/>
+                                        5.2 Upon vacation of the Premises, the LL is not responsible for reimbursing any
+                                        money spent by the TT on the upgrading of the Premises.
+                                        <br/>
+                                        5.3 The TT agrees to make good, repair or cover replacement cost any item
+                                        damaged by the TT, his family or guests.
+                                    </td>
+                                    <td width="40%" style="font-size:12px;">
+                                        <strong>6 Maintenance and Utilities</strong>
+                                        <br/>
+                                        6.1 The TT will keep the interior of the Premises and fixtures and fittings
+                                        (including paint and decorations and appliances) in good condition during the
+                                        tenancy.
+                                        <br/>
+                                        6.2 The TT undertakes to immediately notify the LL in the event of fire, flood
+                                        or any other incident involving the Premises or upon the discovery of any damage
+                                        or fault in the Premises requiring repair or attention.
+                                        <br/>
+                                        6.3 The Tenant is responsible for all minor maintenance repairs upto AED 500
+                                        per Invoice or per visit of service provider to the premises including
+                                        electrical, plumbing, air-conditioning servicing, gas, thermostat etc, any cost
+                                        above AED 500 per Invoice or per visit of service provider will be the
+                                        responsibility of LL (This does not include any upgradation to the unit or any
+                                        consumables like lights , wooden flooring, wall paper, etc).
+                                        <br/>
+                                        6.4 The TT shall be responsible for all utility consumption charges that are
+                                        directly billed to the TT during the tenancy, including, DEWA, Cooling charges,
+                                        Municipality Taxes, telephone, television and internet charges as well as any
+                                        new government charges that may be levied.
+                                        <br/>
+                                        6.5 Community Service charges are the responsibility of the LL.
+                                        <br/>
+                                        6.6 The TT shall be responsible for the maintenance and associated charges for
+                                        the lawns, shrubs and trees if present within the Premises.
+                                        <br/>
+                                        6.7 Positive Properties has no responsibility towards any maintenance repairs
+                                        and or management unless otherwise specified or employed to do so by either
+                                        party.
+                                        <br/>
+                                        6.8 At the time of vacating the Premises, the TT will pay up and produce the
+                                        receipts for the final DEWA, AC and utility bills.
+                                        <br/>
+                                        6.9 The TT shall permit the LL or his representative access to the Premises
+                                        (upon reasonable notice) for the purpose of repairing snags or inspecting the
+                                        Premises.
+                                        <br/>
+                                        6.10
+                                        <span style="color:red">The TT responsibility to register the Ejari contract and
+                                            cancel the Ejari contract at the end of the Tenancy and provide proof of
+                                            cancellation.
+                                        </span>
+                                        <br/>
+                                        <strong>7 End of Tenancy</strong>
+                                        <br/>
+                                        7.1 This tenancy contract can be renewed after one year, subject to the TT
+                                        giving the LL at least 90 days’ notice, in writing, prior to the expiry date and
+                                        the LL accepting, in writing.
+                                        <br/>
+                                        7.2 In the event that the LL wishes the TT to vacate the Premises for the
+                                        purpose of moving in or selling the property, the LL should notify the TT, in
+                                        writing, stamped by the courts and notary public/Fed EX’d twelve months prior to
+                                        the expiry of the contract and in line with RERA guidelines.
+                                        <br/>
+                                        7.3 IIn the event of the LL and TT extending the Tenancy for a further year a
+                                        rent review shall take place according to the current RERA rental index
+                                        calculator.
+                                        <br/>
+                                        7.4 In the event of the TT and LL agreeing to renew the Tenancy Contract,
+                                        Positive Properties will charge an administration fee of AED 500 + VAT to draw
+                                        up a new Tenancy Contract payable by the TT.
+                                        <br/>
+                                        7.5 If the TT does not wish to extend the tenancy, he agrees to give access in
+                                        the last 30 days of the tenancy to show prospective new tenants, being given at
+                                        least one day’s notice for viewings
+                                        <br/>
+                                        7.6 The TT shall clean the Premises and return it as it was handed over to the
+                                        TT at the time of occupying it.
+                                        <br/>
+                                        7.7 The TT agrees to re-paint the apartment prior to vacating the Premises or
+                                        pay the LL for the cost of such re-painting.
+                                        <br/>
+                                        7.8 In the event that the TT wishes to vacate the Premises prior to the expiry
+                                        of the contract, the TT shall give 2 months’ written notice and pay a penalty
+                                        equivalent to Two month’s rent and the LL shall reimburse the balance of the
+                                        rent and the security deposit.
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <p style="page-break-after: always;"/>
+                </div>
+            </t>
+        </t>
+    </template>
+    <template id="custom_session_header_footer">
+        <t t-set="company" t-value="user.company_id"/>
+        <div class="header first-page">
+            <!--             <div style="text-align: center;"> -->
+            <!--                 <img src='/credit_application/static/description/logo2.jpg' style="height:270px; width:500px;"/> -->
+            <!--             </div> -->
+        </div>
+        <div class="footer">
+            <table class="table table-borderless table-sm" style="table-layout: fixed; width: 100%; font-size:13px;">
+                <tr>
+                    <td>
+                        <hr style="border-top: 1px solid black; width:150px;"/>
+                        <span style="padding-left:20px">
+                            <strong>Landlord Signature</strong>
+                        </span>
+                    </td>
+                    <td>
+                        <hr style="border-top: 1px solid black; width:150px;"/>
+                        <span style="padding-left:50px">
+                            <strong>Witness</strong>
+                        </span>
+                    </td>
+                    <td>
+                        <hr style="border-top: 1px solid black; width:150px;"/>
+                        <span style="padding-left:30px">
+                            <strong>Tenant Signature</strong>
+                        </span>
+                    </td>
+                    <td>
+                        <hr style="border-top: 1px solid black; width:150px;"/>
+                        <span style="padding-left:50px">
+                            <strong>Witness</strong>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </template>
+</odoo>

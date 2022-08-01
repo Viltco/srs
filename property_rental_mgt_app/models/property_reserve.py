@@ -84,7 +84,7 @@ class PropertyBook(models.TransientModel):
         contract_id = self.env['contract.details'].create(
             {'contract_month': self.month, 'deposite': self.deposite_amount, 'renewal_date': self.renewal_date,
              'rent_price': self.property_id.rent_price, 'contract_id': self.contract_id.id,
-             'owner_id': self.owner_id.id, 'renewal_date': self.renewal_date, 'partner_id': self.renter_id.id,
+             'owner_id': self.owner_id.id, 'partner_id': self.renter_id.id,
              'property_id': self.property_id.id, 'date': fields.Date.today(), 'from_date': self.from_date,
              'to_date': self.to_date, 'state': state})
         if contract_id:

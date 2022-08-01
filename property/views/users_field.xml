@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_res_users_form_inherited" model="ir.ui.view">
+        <field name="name">res.users.inherited</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="model">res.users</field>
+        <field name="priority">100</field>
+        <field type="xml" name="arch">
+            <xpath expr="//field[@name='login']" position="after">
+                <group string="Record Details">
+                    <field name="status" required="True"/>
+                    <field name="branch_id" required="True"/>
+                    <field name="display_on_branches"/>
+                </group>
+                <group string="User Details">
+                    <field name="designation" required="True"/>
+                    <field name="phone" required="True"/>
+                    <field name="cell" required="True"/>
+                    <field name="id_passport"/>
+                    <field name="physical_address"/>
+                    <field name="postal_address"/>
+                </group>
+                <group string="Resume">
+                    <field name="employment_date"/>
+                    <field name="resume"/>
+                </group>
+                <group string="Login Details">
+                    <field name="login_email"/>
+                    <field name="user_group"/>
+                </group>
+                <group string="Social Media">
+                    <field name="facebook_url"/>
+                    <field name="twitter_url"/>
+                    <field name="linkedin_url"/>
+                    <field name="youtube_url"/>
+                    <field name="blog_url"/>
+                    <field name="pintrest_url"/>
+                    <field name="instagram_url"/>
+                </group>
+                <group string="Fidelity Fund">
+                    <field name="fidelity_fund_id" widget="many2many_binary"/>
+                </group>
+                <group string="Media">
+                    <field name="media_id" widget="many2many_binary"/>
+                </group>
+                <group string="Documents">
+                    <field name="document_id" widget="many2many_binary"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

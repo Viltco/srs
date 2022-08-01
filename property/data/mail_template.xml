@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="email_template" model="mail.template">
+            <field name="name">EMAIL TEMPLATE</field>
+            <field name="model_id" ref="property.model_crm_lead"/>
+            <field name="email_from">${user.email_formatted |safe}</field>
+            <field name="email_to">${user.employee_id.name}</field>
+            <field name="body_html">
+                <![CDATA[
+                 <p>
+                 Dear ${(object.user_id.name)},
+                 <br/><br/>
+                  Please Approve second approval request for below Customer Invoice Details
+                  <br/>
+                  <p><b>Sales Person :</b> ${(object.user_id.name)}<br/></p>
+                  <p><b>Lead Title  :</b> ${(object.name)}</p>
+                  <p><b>Customer Name  :</b> ${(object.partner_id.name)}</p>
+                  <p><b>Last Activity Date  :</b> ${(object.partner_id.name)}</p>
+                  <br/>
+                  </p>
+                   Regards,
+                   <br/>
+                   ${(user.email_formatted)} ]]>
+            </field>
+        </record>
+    </data>
+</odoo>

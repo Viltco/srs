@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="tenancy_contract_id_print">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="article o_report_layout_standard" t-att-data-oe-model="doc and doc._name"
+                     t-att-data-oe-id="doc and doc.id">
+                    <t t-call="property.custom_tenancy_header_footer"/>
+                    <div class="page text-justify">
+                        <div class="oe_structure"/>
+                        <div class="text-center border border-primary">
+                            <table>
+                                <t t-if=" not o.state == 'approved'">
+                                    <tr>
+                                        <td width="40%" style="padding-left:15px">
+                                            <table class="table table-borderless table-sm"
+                                                   style="table-layout: fixed; width: 100%; font-size:14px;">
+
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <td width="40%" style="text-align:left">
+                                                        <span t-field="o.date"/>
+                                                    </td>
+                                                    <th>تاريخ</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <td width="40%" style="text-align:left">
+                                                        <span t-field="o.number"/>
+                                                    </td>
+                                                    <th>رقم</th>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td width="40%" style="padding-top:20px">
+                                            <img src="/property/static/description/teancy_contract.png"
+                                                 style="height:50px; width:100;"/>
+                                        </td>
+
+                                        <td width="20%" style="padding-left:60px">
+                                            <t t-if="o.state == 'new'">
+                                                <strong style="color:red;">NOT APPROVED</strong>
+                                            </t>
+                                            <t t-if="o.state == 'review'">
+                                                <strong style="color:red;">NOT APPROVED</strong>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <t t-if="o.state == 'approved'">
+                                    <tr>
+                                        <td width="50%" style="padding-left:15px">
+                                            <table class="table table-borderless table-sm"
+                                                   style="table-layout: fixed; width: 100%; font-size:14px;">
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <td width="40%" style="text-align:left">
+                                                        <span t-field="o.date"/>
+                                                    </td>
+                                                    <th>تاريخ</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <td width="40%" style="text-align:left">
+                                                        <span t-field="o.number"/>
+                                                    </td>
+                                                    <th>رقم</th>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td width="50%" style="padding-top:20px; padding-left:60px">
+                                            <img src="/property/static/description/teancy_contract.png"
+                                                 style="height:50px; width:100;"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </div>
+                        <br/>
+                        <table class="table table-borderless table-sm"
+                               style="table-layout: fixed; width: 100%; font-size:14px;">
+                            <tr>
+                                <th width="20%" style="text-align:left">
+                                    <span>Property Usage</span>
+                                </th>
+                                <td width="60%" style="text-align:center">
+                                    <table>
+                                        <tr>
+                                            <td width="20%">
+                                                Industrial
+                                                <t t-if="o.property_usage == 'industrial'">
+                                                    <input type="radio" checked="checked"/>
+                                                </t>
+                                                <t t-if=" not o.property_usage == 'industrial'">
+                                                    <input type="radio"/>
+                                                </t>
+                                            </td>
+                                            <td width="20%">
+                                                Commercial
+                                                <t t-if="o.property_usage == 'commercial'">
+                                                    <input type="radio" checked="checked"/>
+                                                </t>
+                                                <t t-if=" not o.property_usage == 'commercial'">
+                                                    <input type="radio"/>
+                                                </t>
+                                            </td>
+                                            <td width="20%">
+                                                Residential
+                                                <t t-if="o.property_usage == 'residential'">
+                                                    <input type="radio" checked="checked"/>
+                                                </t>
+                                                <t t-if=" not o.property_usage == 'residential'">
+                                                    <input type="radio"/>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <th width="20%" style="text-align:right">
+                                    <span>استخدام الخاصية</span>
+                                </th>
+                            </tr>
+                            <!--                            <tr>-->
+                            <!--                                <th width="20%" style="text-align:left">-->
+                            <!--                                    <span class="text-justify">Owner Name</span>-->
+                            <!--                                </th>-->
+                            <!--                                <td width="60%" style="text-align:center">-->
+                            <!--                                    <span t-field="o.owner_name"/>-->
+                            <!--                                </td>-->
+                            <!--                                <th width="20%" style="text-align:right">-->
+                            <!--                                    <span>اسم المالك</span>-->
+                            <!--                                </th>-->
+                            <!--                            </tr>-->
+                            <tr>
+                                <th width="20%" style="text-align:left">
+                                    <span class="text-justify">Landlord Name</span>
+                                </th>
+                                <td width="60%" style="text-align:center">
+                                    <span t-field="o.landlord_name"/>
+                                </td>
+                                <th width="20%" style="text-align:right">
+                                    <span>اسم المالك</span>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th width="20%" style="text-align:left">
+                                    <span class="text-justify">Tenant Name</span>
+                                </th>
+                                <td width="60%" style="text-align:center">
+                                    <span t-field="o.tenant_name"/>
+                                </td>
+                                <th width="20%" style="text-align:right">
+                                    <span>اسم المستأجر</span>
+                                </th>
+                            </tr>
+                        </table>
+                        <table class="table table-borderless table-sm"
+                               style="table-layout: fixed; width: 100%; font-size:14px;">
+                            <tr>
+                                <th>
+                                    <span class="text-justify">Tenant Email</span>
+                                </th>
+                                <td style="text-align:center">
+                                    <span t-field="o.tenant_email"/>
+                                </td>
+                                <th style="text-align:right">
+                                    <span>البريد الإلكتروني للمستأجر</span>
+                                </th>
+                                <th style="padding-left:25px">
+                                    <span class="text-justify">Landlord Email</span>
+                                </th>
+                                <td style="text-align:center">
+                                    <span t-field="o.landlord_email"/>
+                                </td>
+                                <th style="text-align:right">
+                                    <span>البريد الإلكتروني للمالك</span>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-justify">Tenant Phone</span>
+                                </th>
+                                <td style="text-align:center">
+                                    <span t-field="o.tenant_phone"/>
+                                </td>
+                                <th style="text-align:right">
+                                    <span>هاتف المستأجر</span>
+                                </th>
+                                <th style="padding-left:25px">
+                                    <span class="text-justify">Landlord Phone</span>
+                                </th>
+                                <td style="text-align:center">
+                                    <span t-field="o.landlord_phone"/>
+                                </td>
+                                <th style="text-align:right">
+                                    <span>هاتف المالك</span>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-justify">Building Name</span>
+                                </th>
+                                <td style="text-align:center">
+                                    <span t-field="o.building_name"/>
+                                </td>
+                                <th style="text-align:right">
+                                    <span>اسم المبنى</span>
+                                </th>
+                                <th style="padding-left:25px">
+                                    <span>Location</span>
+                                </th>
+                                <td style="text-align:center">
+                                    <span t-field="o.location"/>
+                                </td>
+                                <th style="text-align:right">
+                                    <span>موقعك</span>
+                                </th>
+                            </tr>
+                        </table>
+                        <table class="table table-borderless table-sm"
+                               style="table-layout: fixed; width: 100%; font-size:14px;">
+                            <tr>
+                                <th>
+                                    <span class="text-justify">Property Size (S.M)</span>
+                                </th>
+                                <td style="text-align:center">
+                                    <span t-field="o.property_size"/>
+                                </td>
+                                <th style="text-align:right">
+                                    <span>حجم الملكية</span>
+                                </th>
+                                <th style="padding-left:25px">
+                                    <span class="text-justify">Property Type</span>
+                                </th>
+                                <td style="text-align:center">
+                                    <span t-field="o.property_type"/>
+                                </td>
+                                <th style="text-align:right">
+                                    <span>نوع الملكية</span>
+                                </th>
+                                <th style="text-align:left; padding-left:25px">
+                                    <span class="text-justify">Property No.</span>
+                                </th>
+                                <td style="text-align:center">
+                                    <span t-field="o.property_no"/>
+                                </td>
+                                <th>
+                                    <span style="text-align:right">رقم الخاصية</span>
+                                </th>
+                            </tr>
+                        </table>
+                        <table class="table table-borderless table-sm"
+                               style="table-layout: fixed; width: 100%; font-size:14px;">
+                            <tr>
+                                <th>
+                                    <span class="text-justify">Premises No (DEWA)</span>
+                                </th>
+                                <td style="text-align:center">
+                                    <span t-field="o.premises_no"/>
+                                </td>
+                                <th style="text-align:right">
+                                    <span>رقم المبنى (ديوا)</span>
+                                </th>
+                                <th style="padding-left:25px">
+                                    <span class="text-justify">Plot NO.</span>
+                                </th>
+                                <td style="text-align:center">
+                                    <span t-field="o.plot_no"/>
+                                </td>
+                                <th style="text-align:right">
+                                    <span>عدد مؤامرة</span>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-justify">Contract Period To</span>
+                                </th>
+                                <td style="text-align:center">
+                                    <span t-field="o.contact_period_to"/>
+                                </td>
+                                <th style="text-align:right">
+                                    <span>إلى</span>
+                                </th>
+                                <th>
+                                    <span style="padding-left:25px" class="text-justify">From</span>
+                                </th>
+                                <td style="text-align:center">
+                                    <span t-field="o.contact_period_from"/>
+                                </td>
+                                <th style="text-align:right">
+                                    <span>من</span>
+                                </th>
+                            </tr>
+                        </table>
+                        <table class="table table-borderless table-sm"
+                               style="table-layout: fixed; width: 100%; font-size:14px;">
+                            <tr>
+                                <th width="20%" style="text-align:left">
+                                    <span class="text-justify">Annual Rent</span>
+                                </th>
+                                <td width="60%" style="text-align:center">
+                                    <span t-field="o.annual_rent"/>
+                                </td>
+                                <th width="20%" style="text-align:right">
+                                    <span>الإيجار السنوي</span>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th width="20%" style="text-align:left">
+                                    <span class="text-justify">Contract Value</span>
+                                </th>
+                                <td width="60%" style="text-align:center">
+                                    <span t-field="o.contract_value"/>
+                                </td>
+                                <th width="20%" style="text-align:right">
+                                    <span>قيمة العقد</span>
+                                </th>
+                            </tr>
+                        </table>
+                        <table class="table table-borderless table-sm"
+                               style="table-layout: fixed; width: 100%; font-size:14px;">
+                            <tr>
+                                <th>
+                                    <span>Security Deposit Amount</span>
+                                </th>
+                                <td style="text-align:center">
+                                    <span t-field="o.security_amount"/>
+                                </td>
+                                <th style="text-align:right">
+                                    <span>مبلغ التأمين</span>
+                                </th>
+                                <th style="padding-left:25px">
+                                    <span class="text-justify">Mode of Payment</span>
+                                </th>
+                                <td style="text-align:center">
+                                    <span t-field="o.mode_of_payment"/>
+                                </td>
+                                <th style="text-align:right">
+                                    <span>طريقة الدفع</span>
+                                </th>
+                            </tr>
+                        </table>
+                        <div class="text-center" style="background-color: blue;">
+                            <table class="table table-borderless table-sm rounded"
+                                   style="table-layout: fixed; width: 100%;">
+                                <tr>
+                                    <td style="text-align:left; color:white">
+                                        <h4 class="text-justify">Terms and Conditions</h4>
+                                    </td>
+                                    <td style="text-align:right; color:white">
+                                        <h4>الأحكام والشروط</h4>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <table class="table table-borderless table-sm text-justify"
+                               style="table-layout: fixed; width: 100%; font-size:14px;">
+                            <tr>
+                                <td width="5%" style="text-align:left">1</td>
+                                <td style="text-align:left; padding-right:15px">
+                                    <p class="text-justify">The tenant has inspected the premises and agreed to lease
+                                        the unit on its current condition.
+                                    </p>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>عاين المستاجر الوحدة موضوع الإيجار ووافق على استلجار العقار على حالته الحالية</p>
+                                </td>
+                                <td width="5%" style="text-align:right">1</td>
+                            </tr>
+                            <tr>
+                                <td width="5%" style="text-align:left">2</td>
+                                <td style="text-align:left; padding-right:15px">
+                                    <p class="text-justify">Tenant undertakes to use the premises for designated
+                                        purpose, tenant has no rights to transfer or relinquish the tenancy contract
+                                        either with or alime without counterpart to any without landlord written
+                                        approval Also tenant is not allowed to sublease the premises or any part thereof
+                                        to third party in whole or in part unless it is legally permitted.
+                                    </p>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>يتعهد المستاجر باستعمال الماجور للغرض المخصص له، ولا يجوز للمستاجر تحويل أو
+                                        التنازل عن عقد الايجار للغير بمقابل أو دون مقابل دون موافقة المالك خطيا، كما لا
+                                        يجوز للمستاجر تأجير الماجور او أي جزء منه من الباطن مالم يسمح بذلك قانونا.
+                                    </p>
+                                </td>
+                                <td width="5%" style="text-align:right">2</td>
+                            </tr>
+                            <tr>
+                                <td width="5%" style="text-align:left">3</td>
+                                <td style="text-align:left; padding-right:15px">
+                                    <p class="text-justify">The tenant undertakes not to make any amendments,
+                                        modifications or addendums to the premises subject of the contract without
+                                        obtaining the landlord written approval, tenant shall be liable for any damages
+                                        or failure due to that.
+                                    </p>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>يتعهد المستاجر بعدم إجراء أي تعديلات أو إضافات على العقار موضوع العقد دون موافقة
+                                        المالك الخطية، ويكون المستأجر مسؤولا عن أي أضرار أو نقص أو تلف يلحق بالعقار
+                                    </p>
+                                </td>
+                                <td width="5%" style="text-align:right">3</td>
+                            </tr>
+                            <tr>
+                                <td width="5%" style="text-align:left">4</td>
+                                <td style="text-align:left; padding-right:15px">
+                                    <p class="text-justify">The tenant shall be responsible for payment of all
+                                        electricity, water, jäµ cooling and gas charges resulting of occupying leased
+                                        unit unless other condition agreed in written.
+                                    </p>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>يكون المستأجر مسؤولا عن سداد كافة فواتير الكهرباء والمياه والتبريد والغاز
+                                        المترتبة عن اشغاله الماجور، مالم يتم الاتفاق على غير ذلك كتابياً
+                                    </p>
+                                </td>
+                                <td width="5%" style="text-align:right">4</td>
+                            </tr>
+                            <tr>
+                                <td width="5%" style="text-align:left">5</td>
+                                <td style="text-align:left; padding-right:15px">
+                                    <p class="text-justify">The tenant shall be responsible for payment of all
+                                        electricity, water, jäµ cooling and gas charges resulting of occupying leased
+                                        unit unless other condition agreed in written.
+                                    </p>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>يتعهد المستأجر بسداد مبلغ الإيجار المتفق عليه في هذا العقد في التواريخ والطريقة
+                                        المتفق عليها
+                                    </p>
+                                </td>
+                                <td width="5%" style="text-align:right">5</td>
+                            </tr>
+                            <tr>
+                                <td width="5%" style="text-align:left">6</td>
+                                <td style="text-align:left; padding-right:15px">
+                                    <p class="text-justify">The tenant must pay the rent amount in the manner and dates
+                                        agreed with the landlord.
+                                    </p>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>يلتزم المستاجر التقيد التام بالانظمة والتعليمات المتعلقة باستخدام الماجور
+                                        والمنافع المشتركة (كمواقف السيارات، أحواض السباحة، النادي الصحي، الخ)
+                                    </p>
+                                </td>
+                                <td width="5%" style="text-align:right">6</td>
+                            </tr>
+                            <tr>
+                                <td width="5%" style="text-align:left">7</td>
+                                <td style="text-align:left; padding-right:15px">
+                                    <p class="text-justify">The tenant fully undertakes to comply with all the
+                                        regulations and instructions related to the management of property and use of be
+                                        premises and of common areas such as (parking, swimming pools, gymnasium,
+                                        etc...)
+                                    </p>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>يقر أطراف التعاقد بصحة العناوين وأرقام الهواتف المذكورة أعلاه، وتكون تلك العناوين
+                                        هي المعتمدة رسمياً للإخطارات والإعلانات القضائية في حالة نشوء أي نزاع بين أطراف
+                                        العقد
+                                    </p>
+                                </td>
+                                <td width="5%" style="text-align:right">7</td>
+                            </tr>
+                            <tr>
+                                <td width="5%" style="text-align:left">8</td>
+                                <td style="text-align:left; padding-right:15px">
+                                    <p class="text-justify">Tenancy contract parties declare all the mention email
+                                        addresses and phone numbers are correct, all formal and legal notifications will
+                                        be sent to those addresses in case of dispute between parties.
+                                    </p>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>يتعهد المؤجر بتمكين المستاجر من الانتفاع التام بالعقار للغرض المؤجر لأجله
+                                        والمرافق الخاصة به (حوض سباحة، نادي صحي، مواقف سيارات ...... إلخ) كما يكون
+                                        مسئولا عن اعمال الصيانة مالم يتم الاتفاق على غير ذلك، وعدم التعرض له في منفعة
+                                        العقار
+                                    </p>
+                                </td>
+                                <td width="5%" style="text-align:right">8</td>
+                            </tr>
+                            <tr>
+                                <td width="5%" style="text-align:left">9</td>
+                                <td style="text-align:left; padding-right:15px">
+                                    <p class="text-justify">By signing this agreement from the first party. the
+                                        "Landlord" hereby confirms and undertakes that he is the current owner of the
+                                        property or his legal representative under legal power of attorney duly entitled
+                                        by the competent authority.
+                                    </p>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>يعتبر توقيع المؤجر على هذا العمد إقراراً منه بأنه المالك الحالي للعقار أو الوكيل
+                                        القانوني لذلك المالك بموجب وكالة قانونية موثقة أمونيا لدى الجهات المختصة
+                                    </p>
+                                </td>
+                                <td width="5%" style="text-align:right">9</td>
+                            </tr>
+                            <tr>
+                                <td width="5%" style="text-align:left">10</td>
+                                <td style="text-align:left; padding-right:15px">
+                                    <p class="text-justify">Any disagreement or dispute may arise from execution or
+                                        interpretation of the contract shell be settled by the Rental Dispute Center.
+                                    </p>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>أي خلاف او نزاع قد ينشأ عن تنفيذ أو تفسير هذا العقد يعود البت فيه لمركز فض
+                                        المنازعات الإيجارية.
+                                    </p>
+                                </td>
+                                <td width="5%" style="text-align:right">10</td>
+                            </tr>
+                            <tr>
+                                <td width="5%" style="text-align:left">11</td>
+                                <td style="text-align:left; padding-right:15px">
+                                    <p class="text-justify">This Contract is subject to all provisions of Law No (26) of
+                                        2007 regulating the relation between landlord and tenants in the Emirate of
+                                        Dubai as amended, and as it will be changed or amended from time to time, as
+                                        long with any related legislation's applied in the Emirate of Dubai.
+                                    </p>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>يخضع هذا العقد لكافة أحكام القانون رقم (26) لسنة 2007 بشأن تنظيم العلاقة بين
+                                        مؤجري ومستأجري العقارات في إمارة دبي، وتعديلاته وأي تغيير أو تعديل يطرا عليه من
+                                        وقت لآخر، كما يخضع للتشريعات واللوائح الأخرى ذات العلاقة النافذة في إمارة دبي.
+                                    </p>
+                                </td>
+                                <td width="5%" style="text-align:right">11</td>
+                            </tr>
+                            <tr>
+                                <td width="5%" style="text-align:left">12</td>
+                                <td style="text-align:left; padding-right:15px">
+                                    <p class="text-justify">Any additional condition will not be considered in case it
+                                        conflicts with law.
+                                    </p>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>لا يعتد بأي شرط تم إضافته إلى هذا العقد في حال تعارضه مع القانون.</p>
+                                </td>
+                                <td width="5%" style="text-align:right">12</td>
+                            </tr>
+                            <tr>
+                                <td width="5%" style="text-align:left">13</td>
+                                <td style="text-align:left; padding-right:15px">
+                                    <p class="text-justify">In case of discrepancy occurs between Arabic and non Arabic
+                                        texts with regards to the interpretation of this agreement or the scope of its
+                                        application, the Arabic text shall prevail.
+                                    </p>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>في حال حدوث أي تعارض أو اختلاف في التفسير بين النص العربي والنص الأجنبي يعتمد
+                                        النص العربي.
+                                    </p>
+                                </td>
+                                <td width="5%" style="text-align:right">13</td>
+                            </tr>
+                            <tr>
+                                <td width="5%" style="text-align:left">14</td>
+                                <td style="text-align:left; padding-right:15px">
+                                    <p class="text-justify">The Landlord undertakes to register this tenancy contract on
+                                        EJRI affiliated to Dubai Land Department and provide with all required
+                                        documents.
+                                    </p>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>يتعهد المؤجر بتسجيل عقد الإيجار في نظام إيجاري التابع لدائرة الأراضي والأملاك
+                                        وتوفير كافة المستندات اللازمة لذلك
+                                    </p>
+                                </td>
+                                <td width="5%" style="text-align:right">14</td>
+                            </tr>
+                        </table>
+                        <div class="text-center" style="background-color: blue;">
+                            <table class="table table-borderless table-sm rounded"
+                                   style="table-layout: fixed; width: 100%;">
+                                <tr>
+                                    <td style="text-align:left; color:white">
+                                        <h4>Know your rights</h4>
+                                    </td>
+                                    <td style="text-align:right; color:white">
+                                        <h4>اعرف حقوقك</h4>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <table class="table table-borderless table-sm"
+                               style="table-layout: fixed; width: 100%; font-size:14px;">
+                            <tr>
+                                <td style="text-align:left; padding-right:15px">
+                                    <ul>
+                                        <li>
+                                            <p class="text-justify">You may visit Rental Dispute Center website
+                                                www.rdc.gov.ae and use Smart Judge service in case of any rental dispute
+                                                between parties.
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>يمكنكم زيارة موقع مركز فض المنازعات الإيجارية www.rde gov.ae وإستخدام خدمة</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left; padding-right:15px">
+                                    <ul>
+                                        <li>
+                                            <p class="text-justify">Law No 26 of 2007 regulating relationship between
+                                                landlords and tenants.
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>القاضي الذكي في حال نشوء أي نزاع إيجاري بين الأطراف</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left; padding-right:15px">
+                                    <ul>
+                                        <li>
+                                            <p class="text-justify">Law No 33 of 2008 amending law 26 of year 2007.</p>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>الإطلاع على قانون رقم 26 لسنة 2007 بشأن تنظيم العلاقة بين المؤجرين والمستأجرين.
+                                        الإطلاع على قانون رقم 33 لسنة 2008 الخاص بتعديل بعض أحكام قانون 26 لعام 2007.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left; padding-right:15px">
+                                    <ul>
+                                        <li>
+                                            <p class="text-justify">Law No 43 of 2013 determining rent increases for
+                                                projects.
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td style="text-align:right; padding-left:15px">
+                                    <p>الإطلاع على قانون رقم 43 لسنة 2013 بشأن تحديد زيادة بدل الإيجار</p>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="text-center" style="background-color: blue;">
+                            <table class="table table-borderless table-sm rounded"
+                                   style="table-layout: fixed; width: 100%;">
+                                <tr>
+                                    <td style="text-align:left; color:white">
+                                        <h4>Attachments for EJARI Registration</h4>
+                                    </td>
+                                    <td style="text-align:right; color:white">
+                                        <h4>مرفقات التسجيل في إيجاري</h4>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <table class="table table-borderless table-sm"
+                           style="table-layout: fixed; width: 100%; font-size:14px;">
+                        <tr>
+                            <td width="5%" style="text-align:left">1</td>
+                            <td style="text-align:left; padding-right:15px">
+                                <p class="text-justify">Original unified tenancy contract</p>
+                            </td>
+                            <td style="text-align:right; padding-left:15px">
+                                <p>نسخة أصلية عن عقد الإيجار الموحد</p>
+                            </td>
+                            <td width="5%" style="text-align:right">1</td>
+                        </tr>
+                        <tr>
+                            <td width="5%" style="text-align:left">2</td>
+                            <td style="text-align:left; padding-right:15px">
+                                <p class="text-justify">Copy of Emirates ID or passport for tenant (individual) Or trade
+                                    license for tenant (companies).
+                                </p>
+                            </td>
+                            <td style="text-align:right; padding-left:15px">
+                                <p>صور من بطاقة الهوية أو جواز سفر المستأجر (للأفراد) أو صور من الرخصة التجارية للمستأجر
+                                    (للشركات)
+                                </p>
+                            </td>
+                            <td width="5%" style="text-align:right">2</td>
+                        </tr>
+                        <tr>
+                            <td width="5%" style="text-align:left">3</td>
+                            <td style="text-align:left; padding-right:15px">
+                                <p class="text-justify">Original Emirates ID of applicant or representative card by
+                                    DNRD.
+                                </p>
+                            </td>
+                            <td style="text-align:right; padding-left:15px">
+                                <p>أصل هوية الإمارات لمقدم الطلب أو بطاقة مندوب صادرة عن العامة للإقامة وشؤون الأجانب
+                                </p>
+                            </td>
+                            <td width="5%" style="text-align:right">3</td>
+                        </tr>
+                    </table>
+                    <div class="text-center" style="background-color: blue;">
+                        <table class="table table-borderless table-sm rounded"
+                               style="table-layout: fixed; width: 100%;">
+                            <tr>
+                                <td style="text-align:left; color:white">
+                                    <h4>Additional Terms:</h4>
+                                </td>
+                                <td style="text-align:right; color:white">
+                                    <h4>شروط إضافية</h4>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <table class="table table-borderless table-sm"
+                           style="table-layout: fixed; width: 100%; font-size:14px;">
+                        <tr>
+                            <td width="5%" style="text-align:left">1</td>
+                            <td width="90%">
+                                <hr style="border-top: 1px solid black;"/>
+                            </td>
+                            <td width="5%" style="text-align:right">1</td>
+                        </tr>
+                        <tr>
+                            <td width="5%" style="text-align:left">2</td>
+                            <td width="90%">
+                                <hr style="border-top: 1px solid black;"/>
+                            </td>
+                            <td width="5%" style="text-align:right">2</td>
+                        </tr>
+                        <tr>
+                            <td width="5%" style="text-align:left">3</td>
+                            <td width="90%">
+                                <hr style="border-top: 1px solid black;"/>
+                            </td>
+                            <td width="5%" style="text-align:right">3</td>
+                        </tr>
+                        <tr>
+                            <td width="5%" style="text-align:left">4</td>
+                            <td width="90%">
+                                <hr style="border-top: 1px solid black;"/>
+                            </td>
+                            <td width="5%" style="text-align:right">4</td>
+                        </tr>
+                        <tr>
+                            <td width="5%" style="text-align:left">5</td>
+                            <td width="90%">
+                                <hr style="border-top: 1px solid black;"/>
+                            </td>
+                            <td width="5%" style="text-align:right">5</td>
+                        </tr>
+                        <tr>
+                            <td width="5%" style="text-align:left">6</td>
+                            <td width="90%">
+                                <hr style="border-top: 1px solid black;"/>
+                            </td>
+                            <td width="5%" style="text-align:right">6</td>
+                        </tr>
+                        <tr>
+                            <td width="5%" style="text-align:left">7</td>
+                            <td width="90%">
+                                <hr style="border-top: 1px solid black;"/>
+                            </td>
+                            <td width="5%" style="text-align:right">7</td>
+                        </tr>
+                        <tr>
+                            <td width="5%" style="text-align:left">8</td>
+                            <td width="90%">
+                                <hr style="border-top: 1px solid black;"/>
+                            </td>
+                            <td width="5%" style="text-align:right">8</td>
+                        </tr>
+                    </table>
+                    <table class="table table-borderless table-sm"
+                           style="table-layout: fixed; width: 100%; font-size:14px;">
+                        <tr>
+                            <td>
+                                <p class="text-justify">Note: You may add an addendum to this tenancy contract in case
+                                    you have additional terms while it needs to be signed by all parties.
+                                </p>
+                            </td>
+                            <td style="text-align:right; padding-left:15px">
+                                <p>ملاحظة: يمكن إضافة ملحق إلى هذا العقد في حال وجود أي شروط إضافية، على أن يوقع من
+                                    أطراف التعاقد
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                    <p style="page-break-after: always;"/>
+                </div>
+            </t>
+        </t>
+    </template>
+    <template id="custom_tenancy_header_footer">
+        <t t-set="company" t-value="user.company_id"/>
+        <div class="header first-page row">
+            <div style="text-align: left;" class="column">
+                <img src="/property/static/description/logo.png" style="height:110px; width:180px;"/>
+            </div>
+            <div style="text-align: right; padding-left:450px;" class="column">
+                <img src="/property/static/description/logo2.png" style="height:150px; width:300px;"/>
+            </div>
+        </div>
+        <div class="footer">
+            <table class="table table-borderless table-sm" style="table-layout: fixed; width: 100%; font-size:14px;">
+                <tr>
+                    <td style="text-align:center">
+                        <!--                                         <hr style="border-top: 1px solid black; width:150px;"/> -->
+                        <strong>توقيع المستأجر</strong>
+                        <br/>
+                        <strong>Tenant Signature</strong>
+                    </td>
+                    <td style="text-align:center;">
+                        <!--                                         <hr style="border-top: 1px solid black; width:150px;"/> -->
+                        <strong>توقيع المؤجر</strong>
+                        <br/>
+                        <strong>Landlord Signature</strong>
+                    </td>
+                </tr>
+                <br/>
+                <br/>
+                <tr>
+                    <td style="text-align:center">
+                        <strong>Date _____________________ تاريخ</strong>
+                    </td>
+                    <td style="text-align:center">
+                        <strong>Date _____________________ تاريخ</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </template>
+</odoo>

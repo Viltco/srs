@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="paper_format_tenancy_contract" model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">35</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">40</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+            id="tenancy_contract_pdf"
+            string="Tenancy Contract"
+            model="tenancy.contract"
+            report_type="qweb-pdf"
+            name="property.tenancy_contract_id_print"
+            file="property.tenancy_contract_id_print"
+            paperformat="paper_format_tenancy_contract"
+    />
+
+    <report
+            id="acknowledge_report_pdf"
+            string="Acknowledgement Report"
+            model="tenancy.contract"
+            report_type="qweb-pdf"
+            name="property.acknowledge_report_id_print"
+            file="property.acknowledge_report_id_print"/>
+
+<!--     <report-->
+<!--            id="commercial_property_report_pdf"-->
+<!--            string="Property Details"-->
+<!--            model="commercial.property"-->
+<!--            report_type="qweb-pdf"-->
+<!--            name="property.commercial_property_id_print"-->
+<!--            file="property.commercial_property_id_print"/>-->
+
+    <report
+            id="commercial_property_report_pdf"
+            string="Property Details"
+            model="commercial.property"
+            report_type="qweb-pdf"
+            name="property.commercial_property_details_id_print"
+            file="property.commercial_property_details_id_print"/>
+
+        <report
+            id="residential_property_report_pdf"
+            string="Property Details"
+            model="residential.property"
+            report_type="qweb-pdf"
+            name="property.residential_property_details_id_print"
+            file="property.residential_property_details_id_print"/>
+
+
+    <record id="paper_format_addendum_standard" model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">3</field>
+        <field name="margin_bottom">18</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">10</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+            id="addendum_pdf"
+            string="Addendum Report"
+            model="tenancy.contract"
+            report_type="qweb-pdf"
+            name="property.addendum_pdf_id_print"
+            file="property.addendum_pdf_id_print"
+            paperformat="paper_format_addendum_standard"/>
+
+
+</odoo>

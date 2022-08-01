@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_model_branch_tree" model="ir.ui.view">
+        <field name="name">model.branch.tree</field>
+        <field name="model">model.branch</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="status"/>
+                <field name="display_on_website"/>
+                <field name="branch_name"/>
+                <field name="head_office"/>
+                <field name="email" widget="email"/>
+                <field name="phone"/>
+                <field name="fax_no"/>
+                <field name="physical_address"/>
+                <field name="postal_address"/>
+                <field name="province"/>
+            </tree>
+
+        </field>
+    </record>
+    <record id="view_model_branch_form" model="ir.ui.view">
+        <field name="name">model.branch.form</field>
+        <field name="model">model.branch</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Record Details" col="4">
+                        <field name="status" required="True"/>
+                        <field name="display_on_website"/>
+                    </group>
+                    <group string="Branch Details" col="4">
+                        <field name="branch_name" required="True"/>
+                        <field name="head_office"/>
+                    </group>
+                    <group string="Contact Details" col="4">
+                        <field name="email" required="True"/>
+                        <field name="phone" widget="phone" required="True"/>
+                        <field name="fax_no"/>
+                        <field name="physical_address" required="True"/>
+                        <field name="postal_address" required="True"/>
+                        <field name="province" required="True"/>
+                    </group>
+                    <group string="Google Mapping">
+                    </group>
+                    <group>
+                        <group string="Profile">
+                            <field name="profile"/>
+                        </group>
+                    </group>
+                    <group string="Profile" col="4">
+                        <field name="website"/>
+                        <field name="facebook_url"/>
+                        <field name="twitter_url"/>
+                        <field name="linkedin_url"/>
+                        <field name="youtube_url"/>
+                        <field name="blog_url"/>
+                        <field name="pintrest_url"/>
+                        <field name="instagram_url"/>
+                    </group>
+                    <group string="Feeds" col="4">
+                        <field name="feed_listing_facebook"/>
+                        <field name="feed_new_news_facebook"/>
+                    </group>
+                    <group string="Branch Images">
+                        <field name="branch_image_id" widget="many2many_binary"/>
+                    </group>
+                    <group string="Documents">
+                        <field name="document_id" widget="many2many_binary"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="model_branch_action" model="ir.actions.act_window">
+        <field name="name">Branch</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">model.branch</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create your Branch!
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="branch_menu_res_branch"
+              name="Branch"
+              parent="base.menu_users"
+              action="model_branch_action"/>
+
+</odoo>

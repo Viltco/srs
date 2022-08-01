@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="acknowledge_report_id_print">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div style="float:left;">
+                            Date:
+                            <span t-field="o.date"/>
+                        </div>
+                        <br/>
+                        <h3 class="text-center">ACKNOWLEDGEMENT</h3>
+                        <br/>
+                        <div>
+                            <div class="row">
+                                <p>This is to acknowledge receipt of the following:</p>
+                            </div>
+                            <div class="row">
+                                <strong>Contract No.:&#160;</strong>
+                                <span t-field="o.number"/>
+                            </div>
+                            <div class="row">
+                                <strong>Property No.:&#160;</strong>
+                                <span t-field="o.building_name"/>-
+                                <span t-field="o.plot_no"/>
+                            </div>
+                            <div class="row">
+                                <strong>Landlord Name:&#160;</strong>
+                                <span t-field="o.landlord_name"/>
+                            </div>
+                            <div class="row">
+                                <strong>Tenant Name:&#160;</strong>
+                                <span t-field="o.tenant_name"/>
+                            </div>
+                            <div class="row">
+                                <strong>Cheques:</strong>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:left;">
+                                            <strong>Description</strong>
+                                        </th>
+                                        <th style="text-align:left;">
+                                            <strong>Cheque Number</strong>
+                                        </th>
+                                        <th style="text-align:left;">
+                                            <strong>Cheque Amount (AED)</strong>
+                                        </th>
+                                        <th style="text-align:left;">
+                                            <strong>Cheque Date</strong>
+                                        </th>
+                                        <th style="text-align:left;">
+                                            <strong>Cheque Issuer</strong>
+                                        </th>
+                                        <th style="text-align:left;">
+                                            <strong>Issuer Bank</strong>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left;">
+                                            <p>Security Deposit</p>
+                                        </td>
+                                        <td style="text-align:left;">
+                                        </td>
+                                        <td style="text-align:left;">
+                                            <span t-field="o.security_amount"/>
+                                        </td>
+                                        <td style="text-align:left;">
+                                        </td>
+                                        <td style="text-align:left;">
+                                            <span t-field="o.tenant_name"/>
+                                        </td>
+                                        <td style="text-align:left;">
+                                        </td>
+                                    </tr>
+
+                                    <t t-if="o.no_of_payment">
+                                        <t t-foreach="o.no_of_payment" t-as="p">
+                                            <tr>
+                                                <td style="text-align:left;">
+                                                    <p>
+                                                        <span t-esc="p + 1"/>
+                                                        Rental
+                                                    </p>
+                                                </td>
+                                                <td style="text-align:left;">
+                                                </td>
+                                                <td style="text-align:left;">
+                                                    <span t-field="o.rental_rows"/>
+                                                </td>
+                                                <td style="text-align:left;">
+                                                </td>
+                                                <td style="text-align:left;">
+                                                    <span t-field="o.tenant_name"/>
+                                                </td>
+                                                <td style="text-align:left;">
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </t>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <p>Payment Details: Security Deposit &amp; Rental’s of&#160;</p>
+                            <span t-field="o.building_name"/>-
+                            <span t-field="o.plot_no"/>
+                        </div>
+                        <div class="row">
+                            <strong>Received on behalf of the Landlord.</strong>
+                            <br/>
+                            <strong>
+                                Security Deposit will not be refunded if the Tenant back out from the Deal.
+                            </strong>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="row">
+                            <p>Received by:___________________________</p>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <p>Date received:_________________________</p>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

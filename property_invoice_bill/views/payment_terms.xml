@@ -23,8 +23,8 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='construction_status']" position="after">
                     <field name="tenant_id"/>
-                    <field name="commission_type"/>
-                    <field name="commission_amount"/>
+                    <field name="commission_type" required="1"/>
+                    <field name="commission_amount" required="1"/>
                 </xpath>
             </field>
         </record>
