@@ -1,0 +1,39 @@
+<odoo>
+
+    <record id="view_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="iban_no"/>
+                <field name="customer_id"/>
+                <field name="branch"/>
+            </xpath>
+
+            <xpath expr="//field[@name='branch']" position="after">
+                <div class="o_row">
+                    <b><label for="barcode" string="Code"/></b>
+                    <field name="barcode"/>
+                    <button string="Generate" class="btn btn-link" type="object" name="generate_random_barcode" attrs="{'invisible': [('barcode', '!=', False)]}"/>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_partner_bank_form_inherit" model="ir.ui.view">
+        <field name="name">partner.bank.form.inherit</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='acc_holder_name']" position="after">
+                <field name="remarks"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
