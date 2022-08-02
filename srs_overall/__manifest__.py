@@ -19,7 +19,11 @@
     'version': '14.0.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'property_rental_mgt_app', 'account_asset', 'account', 'purchase', 'mail'],
+    'depends': ['base',
+                'property_rental_mgt_app',
+                'account_asset', 'account',
+                'purchase', 'mail', 'timer',
+                'sale'],
 
     # always loaded
     'data': [
@@ -31,6 +35,7 @@
         'views/contact_views.xml',
         'views/offer_letter_views.xml',
         'views/purchase_views.xml',
+        'views/sale_views.xml',
     ],
 
 }

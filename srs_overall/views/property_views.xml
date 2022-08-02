@@ -9,7 +9,7 @@
             <xpath expr="//header/field[@name='state']" position="replace">
                 <field name="state"
                        widget="statusbar"
-                       statusbar_visible="new,invoice,active,assigned,in_progress,hold,to_approve,rejected,done,cancel"/>
+                       statusbar_visible="new,active,assigned,in_progress,hold,to_approve,rejected,done,invoice,cancel"/>
             </xpath>
 
             <xpath expr="//header/button[@name='create_maintanance_invoice']" position="after">

@@ -13,7 +13,6 @@ class PropertyMainInh(models.Model):
     job_pos = fields.Char(string="Job Position", related='property_id.tenant_id.function')
 
     state = fields.Selection([('new', 'New'),
-                              ('invoice', 'Invoiced'),
                               ('active', 'Active'),
                               ('assigned', 'Assigned'),
                               ('in_progress', 'In Progress'),
@@ -21,6 +20,7 @@ class PropertyMainInh(models.Model):
                               ('to_approve', 'To Approve'),
                               ('rejected', 'Rejected'),
                               ('done', 'Done'),
+                              ('invoice', 'Invoiced'),
                               ('cancel', 'Cancelled'),
                               ], default='new')
 

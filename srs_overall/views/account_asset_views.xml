@@ -10,7 +10,7 @@
                 <div>
                     <label for="asset_code" name="asset_code"/>
                     <h1>
-                        <field name="asset_code"/>
+                        <field name="asset_code" readonly="1"/>
                     </h1>
                 </div>
             </xpath>
