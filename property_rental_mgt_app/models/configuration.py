@@ -30,3 +30,4 @@ class PropertyType(models.Model):
     _description = 'Property Type'
 
     name = fields.Char("Name", required=True)
+    property_type = fields.Char("Property Type")

@@ -31,6 +31,7 @@
                                 <field name="property_id"/>
                                 <field name="inv_pay_source" string="Invoice Reference"/>
                                 <field name="payment_origin" string="Payment Reference"/>
+                                <field name="state" invisible="1"/>
                             </group>
                             <group>
                                 <field name="user_id"/>

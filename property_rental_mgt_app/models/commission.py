@@ -11,6 +11,7 @@ class UserCommission(models.Model):
     percentage = fields.Float()
     property_id = fields.Many2one('product.product', string="Property")
 
+
 class CommissionLines(models.Model):
     _name = 'commission.line'
     _description = "Commission Lines"
@@ -25,6 +26,9 @@ class CommissionLines(models.Model):
     payment_origin = fields.Char()
     invoice_id = fields.Many2one('account.move')
     is_created_worksheet = fields.Boolean("Worksheet Created")
+    state = fields.Selection([('posted', 'Posted'),
+                              ('paid', 'paid')
+                              ],string="Status")
 
 class MergeWorksheet(models.Model):
     _name = 'merge.worksheet'

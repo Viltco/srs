@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button class="oe_highlight" type="object" name="create_maintanance_invoice" string="Create Invoice" icon="fa-pencil-square-o"  states='new' />
+                        <button class="oe_highlight" type="object" name="create_maintanance_invoice" string="Create Invoice" icon="fa-pencil-square-o" states="done" />
                         <button name="button_cancel" string="Cancel Invoice" type="object" states="invoice"/>
                         <button name="action_draft" states="cancel" type="object" string="Set to New"/>
                         <field name="state" widget="statusbar" statusbar_visible="new,invoice"/>
