@@ -14,31 +14,17 @@
                             states="draft"
                             groups="pdc_payments.group_save"/>
 
-                    <button name="button_register"
-                            string="Register"
+                    <button name="button_receive"
+                            string="Receive"
                             type="object"
                             class="oe_highlight"
                             states="save"
-                            groups="pdc_payments.group_register"/>
-
-                    <button name="button_cancel"
-                            string="Cancel"
-                            type="object"
-                            attrs="{'invisible': [('state', 'in', ['cancel','cleared'])]}"
-                            class="oe_highlight"
-                            groups="pdc_payments.group_cancel"/>
-
-                    <button name="button_return"
-                            string="Return"
-                            type="object"
-                            states="registered"
-                            class="oe_highlight"
-                            groups="pdc_payments.group_return"/>
+                            groups="pdc_payments.group_receive"/>
 
                     <button name="button_deposit"
                             string="Deposit"
                             type="object"
-                            states="returned"
+                            states="received"
                             class="oe_highlight"
                             groups="pdc_payments.group_deposit"/>
 
@@ -49,12 +35,33 @@
                             class="oe_highlight"
                             groups="pdc_payments.group_bounce"/>
 
-                    <button name="button_cleared"
-                            string="Cleared"
+                    <button name="button_replace"
+                            string="Replace"
                             type="object"
                             states="bounced"
                             class="oe_highlight"
+                            groups="pdc_payments.group_replace"/>
+
+<!--                    <button name="button_return"-->
+<!--                            string="Return"-->
+<!--                            type="object"-->
+<!--                            states="registered"-->
+<!--                            class="oe_highlight"-->
+<!--                            groups="pdc_payments.group_return"/>-->
+
+                    <button name="button_cleared"
+                            string="Cleared"
+                            type="object"
+                            states="replaced"
+                            class="oe_highlight"
                             groups="pdc_payments.group_clear"/>
+
+                    <button name="button_cancel"
+                            string="Cancel"
+                            type="object"
+                            attrs="{'invisible': [('state', 'in', ['cancel','cleared'])]}"
+                            class="oe_highlight"
+                            groups="pdc_payments.group_cancel"/>
 
                     <button name="action_pdc_payment_wizard"
                             string="Partner Ledger Report"

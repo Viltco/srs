@@ -10,8 +10,8 @@
         <field name="category_id" ref="pdc_payment_approval"/>
     </record>
 
-    <record id="group_register" model="res.groups">
-        <field name="name">Register Approval</field>
+    <record id="group_receive" model="res.groups">
+        <field name="name">Receive Approval</field>
         <field name="category_id" ref="pdc_payment_approval"/>
     </record>
 
@@ -20,8 +20,8 @@
         <field name="category_id" ref="pdc_payment_approval"/>
     </record>
 
-    <record id="group_return" model="res.groups">
-        <field name="name">Return Approval</field>
+    <record id="group_replace" model="res.groups">
+        <field name="name">Replaced Approval</field>
         <field name="category_id" ref="pdc_payment_approval"/>
     </record>
 

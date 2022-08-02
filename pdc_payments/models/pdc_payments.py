@@ -52,7 +52,7 @@ class PDCPayment(models.Model):
     state = fields.Selection([('draft', 'Draft'),
                               ('save', 'Save'),
                               # ('registered', 'Registered'),
-                              ('registered', 'Received'),
+                              ('received', 'Received'),
                               # ('returned', 'Returned'),
                               ('deposited', 'Deposited'),
                               ('bounced', 'Bounced'),
@@ -94,9 +94,9 @@ class PDCPayment(models.Model):
             'state': 'save'
         })
 
-    def button_register(self):
+    def button_receive(self):
         self.write({
-            'state': 'registered'
+            'state': 'received'
         })
 
     def button_cancel(self):
@@ -119,6 +119,11 @@ class PDCPayment(models.Model):
             'state': 'bounced'
         })
 
+    def button_replace(self):
+        self.write({
+            'state': 'replaced'
+        })
+
     def button_cleared(self):
         self.write({
             'state': 'cleared'
@@ -136,6 +141,7 @@ class PDCPayment(models.Model):
             'ref': self.memo,
             'pdc_ref': self.name,
             'currency_id': self.currency_id.id,
+            'state': 'draft',
         }
         payment = self.env['account.payment'].create(vals)
         print(payment.partner_type)
