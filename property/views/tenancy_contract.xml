@@ -23,14 +23,19 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <button id="button_send_review" name="action_send_review"
+                            string="Send For Review" type="object"
+                            class="btn-primary" states="new"/>
                     <button id="button_review" name="action_review" string="Review" type="object"
-                            class="btn-primary" groups="property.group_tenancy_contract_review"/>
-                    <button id="button_approve" name="action_approve" string="Approved" type="object"
+                            class="btn-primary" states="review"
+                            groups="property.group_tenancy_contract_review"/>
+                    <button id="button_approve" name="action_approve" string="Approve"
+                            type="object" states="approved"
                             class="btn-primary" groups="property.group_tenancy_contract_approve"/>
                     <button id="button_cancel" name="action_cancel" string="Cancel" type="object"
-                            class="btn-primary" states="new"/>
+                            class="btn-primary" states="approved"/>
                     <field name="state" widget="statusbar"
-                           statusbar_visible="new,review,approved,cancel"/>
+                           statusbar_visible="new,review,approved"/>
                 </header>
                 <sheet>
                     <group>

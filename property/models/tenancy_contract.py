@@ -36,10 +36,12 @@ class TenancyContract(models.Model):
     mode_of_payment = fields.Char(string='Mode of Payment')
     rental_rows = fields.Float(compute='_compute_rental_rows', invisible=True)
 
-    state = fields.Selection(
-        [('new', 'New'), ('review', 'Review'), ('approved', 'Approved'),
-         ('cancel', 'Cancelled')],
-        default='new')
+    state = fields.Selection([('new', 'New'),
+                              ('review', 'Review'),
+                              ('approved', 'Approve'),
+                              ('cancel', 'Cancelled'),
+                              ('done', 'Done'),
+                              ], default='new')
 
     @api.depends('no_of_payment')
     def _compute_rental_rows(self):
@@ -49,11 +51,14 @@ class TenancyContract(models.Model):
             else:
                 record.rental_rows = 0
 
-    def action_review(self):
+    def action_send_review(self):
         self.state = 'review'
 
-    def action_approve(self):
+    def action_review(self):
         self.state = 'approved'
+
+    def action_approve(self):
+        self.state = 'done'
 
     def action_cancel(self):
         self.state = 'cancel'
