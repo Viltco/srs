@@ -3,7 +3,7 @@ from odoo.exceptions import UserError
 from datetime import date,datetime
 from dateutil.relativedelta import relativedelta
 
-# 
+
 class AccountCommission(models.Model):
     _inherit="account.move"
      
@@ -15,16 +15,11 @@ class AccountCommission(models.Model):
         if self.move_type == 'in_invoice' and self.commission_id != False:
             self.commission_posted()
         return res
-    
-    
-    
+
     def commission_posted(self):
-       
         obj = self.commission_id
         if obj:
             obj.state = 'posted'
-    
-    
     
     def commission_paid(self):
        
