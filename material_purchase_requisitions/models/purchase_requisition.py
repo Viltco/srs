@@ -29,6 +29,10 @@ class MaterialPurchaseRequisition(models.Model):
 
     # user_id = fields.Many2one('res.users',string='User')
 
+    building_unit = fields.Many2one('product.product', string="Building / Unit",
+                                    domain=lambda self: [("property_book_for", "=", 'rent')])
+    contract_no = fields.Char(string="Contract No.")
+
     name = fields.Char(required=True, copy=False, readonly=True,
                        index=True, default=lambda self: _('New'))
 
