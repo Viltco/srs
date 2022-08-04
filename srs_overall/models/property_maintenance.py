@@ -123,6 +123,8 @@ class PropertyMainInh(models.Model):
     def get_server_time(self):
         return fields.Datetime.now()
 
+    is_mpr = fields.Boolean(string='MPR')
+
     def button_create_mpr(self):
         line_val = []
         for record in self:
@@ -135,10 +137,34 @@ class PropertyMainInh(models.Model):
             }))
         vals = {
             'request_date': record.date,
+            'mante_id': self.id,
             'state': 'draft',
             'company_id': self.env.company.id,
             'requisition_line_ids': line_val
             }
         record = self.env['material.purchase.requisition'].create(vals)
+        if record:
+            self.is_mpr = True
+
+    mpr_count = fields.Integer(string="MPR Count", compute='_compute_total_mpr')
+
+    def _compute_total_mpr(self):
+        records = self.env['material.purchase.requisition'].search_count([('mante_id', '=', self.id)])
+        self.mpr_count = records
+
+    def action_mpr_view(self):
+        return {
+            'name': _('MPR'),
+            'view_mode': 'tree,form',
+            'res_model': 'material.purchase.requisition',
+            'domain': [('mante_id', '=', self.id)],
+            'type': 'ir.actions.act_window',
+        }
+
+
+class MPRInh(models.Model):
+    _inherit = 'material.purchase.requisition'
+
+    mante_id = fields.Many2one('property.maintanance', string="Property Maintenance")
 
 

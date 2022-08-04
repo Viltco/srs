@@ -16,9 +16,9 @@
 
                 <button name="button_create_mpr"
                         type="object"
-                        states="new"
                         string="Create MPR"
                         class="oe_highlight"
+                        attrs="{'invisible':['|', ('is_mpr', '=', True), ('state', '!=', 'new')]}"
                 />
 
                 <button name="button_active"
@@ -75,6 +75,15 @@
 
             </xpath>
 
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_mpr_view"
+                        class="oe_stat_button"
+                        icon="fa-money"
+                        type="object">
+                    <field string="MPR" name="mpr_count" widget="statinfo"/>
+                </button>
+            </xpath>
+
             <xpath expr="//field[@name='property_id']" position="after">
                 <field name="tenant_id"/>
                 <field name="email"/>
@@ -89,6 +98,20 @@
                 <field name="is_hide_pause" invisible="1"/>
                 <field name="is_hide_stop" invisible="1"/>
                 <field name="is_hide_resume" invisible="1"/>
+                <field name="is_mpr" invisible="1"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_mpr_form_inherit" model="ir.ui.view">
+        <field name="name">mpr.form.inherit</field>
+        <field name="model">material.purchase.requisition</field>
+        <field name="inherit_id" ref="material_purchase_requisitions.material_purchase_requisition_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//sheet" position="inside">
+                <field name="mante_id" invisible="1"/>
             </xpath>
 
         </field>

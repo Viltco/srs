@@ -7,6 +7,10 @@ from odoo.exceptions import AccessError, UserError, ValidationError
 class PerformaInvoiceWizard(models.TransientModel):
     _name = 'performa.invoice.wizard'
 
+    name = fields.Selection([
+        ('res_inv', 'Residential invoice'),
+        ('com_inv', 'Commercial invoice')], string='Create Performa invoice')
+
     def open_proforma(self):
         record = self.env['sale.order'].browse(self.env.context.get('active_ids'))
         # for rec in record:

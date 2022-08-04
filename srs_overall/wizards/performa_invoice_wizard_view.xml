@@ -12,6 +12,10 @@
                                 them before validation.
                             </p>
 
+                            <group>
+                                <field name="name" widget="radio"/>
+                            </group>
+
                             <footer>
                                 <button string="Create and View Performa Invoice" class="btn-primary" type="object" name="open_proforma"/>
                                 <button string="CREATE INVOICE" class="btn btn-light" type="object" name="create_invoices"/>
