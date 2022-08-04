@@ -13,6 +13,14 @@
             </xpath>
 
             <xpath expr="//header/button[@name='create_maintanance_invoice']" position="after">
+
+                <button name="button_create_mpr"
+                        type="object"
+                        states="new"
+                        string="Create MPR"
+                        class="oe_highlight"
+                />
+
                 <button name="button_active"
                         type="object"
                         states="new"

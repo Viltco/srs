@@ -43,6 +43,7 @@
                             <field name="validity_period"/>
                        </group>
                         <group>
+                            <field name="date"/>
                             <field name="amount_tax"/>
                             <field name="letter_type"/>
                         </group>

@@ -20,6 +20,7 @@ class OfferLetter(models.Model):
     validity_period = fields.Char(string='Validity Period', tracking=True)
     amount_tax = fields.Float(string='Tax Amount', tracking=True)
     description = fields.Char(string='Description', tracking=True)
+    date = fields.Date(string='Date', tracking=True, default=fields.date.today())
     letter_type = fields.Selection([('residential', 'Residential'),
                               ('commercial', 'Commercial')
                               ], string='Offer Letter Type', tracking=True, index=True, copy=False)

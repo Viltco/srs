@@ -123,4 +123,22 @@ class PropertyMainInh(models.Model):
     def get_server_time(self):
         return fields.Datetime.now()
 
+    def button_create_mpr(self):
+        line_val = []
+        for record in self:
+            uom_records = self.env['uom.uom'].search([('name', '=', 'Units')])
+            line_val.append((0, 0, {
+                'product_id': record.property_id.id,
+                'requisition_type': 'purchase',
+                'qty': 1,
+                'uom': uom_records.id,
+            }))
+        vals = {
+            'request_date': record.date,
+            'state': 'draft',
+            'company_id': self.env.company.id,
+            'requisition_line_ids': line_val
+            }
+        record = self.env['material.purchase.requisition'].create(vals)
+
 

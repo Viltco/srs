@@ -1,0 +1,34 @@
+<odoo>
+    <data>
+        <odoo>
+            <data>
+                <record id="view_performa_invoice_wizard" model="ir.ui.view">
+                    <field name="name">performa.invoice.wizard.wizard</field>
+                    <field name="model">performa.invoice.wizard</field>
+                    <field name="arch" type="xml">
+                        <form string="Performa Invoice">
+                            <p class="oe_grey">
+                                Invoices will be created in draft so that you can review
+                                them before validation.
+                            </p>
+
+                            <footer>
+                                <button string="Create and View Performa Invoice" class="btn-primary" type="object" name="open_proforma"/>
+                                <button string="CREATE INVOICE" class="btn btn-light" type="object" name="create_invoices"/>
+                                <button string="CANCEL" class="btn btn-light" special="cancel" type="object" name="create_invoices"/>
+                            </footer>
+                        </form>
+                    </field>
+                </record>
+
+                <record id="action_performa_invoice_wizard" model="ir.actions.act_window">
+                    <field name="name">Create Performa Invoice</field>
+                    <field name="type">ir.actions.act_window</field>
+                    <field name="res_model">performa.invoice.wizard</field>
+                    <field name="view_mode">form</field>
+                    <field name="target">new</field>
+                </record>
+            </data>
+        </odoo>
+    </data>
+</odoo>

@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 1,offer.letter,model_offer_letter,base.group_user,1,1,1,1
+access_performa_invoice_wizard,access.performa.invoice.wizard,model_performa_invoice_wizard,,1,1,1,1

@@ -28,6 +28,8 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'reports/offer_letter_report.xml',
+        'reports/offer_letter_template.xml',
         'views/account_asset_views.xml',
         'views/account_move_views.xml',
         'views/property_views.xml',
@@ -36,6 +38,7 @@
         'views/offer_letter_views.xml',
         'views/purchase_views.xml',
         'views/sale_views.xml',
+        'wizards/performa_invoice_wizard_view.xml',
     ],
 
 }

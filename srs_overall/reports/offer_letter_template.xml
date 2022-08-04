@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="offer_letter_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <div class="text-center">
+                            <h3>
+                                <strong>Offer Letter</strong>
+                            </h3>
+                        </div>
+                        <br/>
+                        <div>
+                            <div class="row mt32 mb32">
+                                <div class="col-6">
+                                    <strong>Date: </strong><span t-field="doc.date"/><br/><br/>
+<!--                                    <strong>Customer/Dealer: </strong><span t-field="doc.multi_unit"/>-->
+                                </div>
+<!--                                <div class="col-6">-->
+<!--                                    <strong>Date: </strong><span t-field="doc.multi_unit"/>-->
+<!--                                </div>-->
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row mt32 mb32">
+                                <div class="col-6">
+                                    <span>We thank you for the interest shown in leasing the
+                                     subject property we are pleased to offer you based on the following details"</span> <br/><br/>
+                                    <strong>Unit Breakdown: </strong><br/>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead class="text-center" style="background-color:#eeeeee; font-size:14px; font-weight:600;">
+                                <th>Multi Units</th>
+                                <th>Multi Services</th>
+                                <th>Annual Rent</th>
+                                <th>Period</th>
+                                <th>Security Deposit</th>
+                                <th>Validity Period</th>
+                                <th>Tax Amount</th>
+                                <th>Description</th>
+                                <th>Letter Type</th>
+                            </thead>
+                            <tbody class="text-center" style="font-size:12px;">
+                                <tr>
+                                    <td>
+                                        <span t-esc="doc.multi_unit"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.multi_service"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.rent"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.period"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.security_deposit"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.validity_period"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.amount_tax"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.description"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.letter_type"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+<!--                        <div style="width: 450px; height: 100px; display: inline-block;">-->
+<!--                            <div class="row mt32 mb32">-->
+<!--                                <div class="col-8">-->
+<!--                                    <strong>Prepared By:</strong>-->
+<!--                                </div>-->
+<!--                                <div class="col-8">-->
+<!--                                    <strong>Checked By:</strong>-->
+<!--                                </div>-->
+<!--                                <div class="col-8">-->
+<!--                                    <strong>Approved By:</strong>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
