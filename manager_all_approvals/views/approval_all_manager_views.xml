@@ -57,7 +57,7 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
 
-            <xpath expr="//header/button[@name='action_quotation_send']" position="after">
+            <xpath expr="//header/button[@name='action_confirm']" position="after">
                 <button name="button_review"
                         type="object"
                         states="to_review"
